@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\UpcomingProgramController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Middleware\AdminAuthenticate;
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('cspdadmin')->name('admin.')->group(function () {
 
     // Public login routes
     Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('login');

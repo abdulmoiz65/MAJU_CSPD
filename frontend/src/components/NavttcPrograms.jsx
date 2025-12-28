@@ -1,57 +1,65 @@
 import { useEffect, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, Loader } from "lucide-react";
+import navttcProgramService from "../services/api/navttcProgramService";
 import "./NavttcProgram.css";
 
 const NavttcPrograms = () => {
-  const trades = [
-    { id: 1,
-      title: "Amazon Virtual Assistant",
-      qualification: "Intermediate",
-      applyLink:"https://nsis.navttc.gov.pk/"  },
-    { id: 2, title: "Digital Marketing & Search Engine Optimization (SEO)", qualification: "Intermediate" , applyLink:"https://nsis.navttc.gov.pk/" },
-    { id: 3, title: "Graphic Design and Video Editing", qualification: "Intermediate" , applyLink:"https://nsis.navttc.gov.pk/" },
-    {
-      id: 4,
-      title: "Microsoft Power BI",
-      qualification:
-      "Bachelor in Commerce, Economics, Statistics, Banking, Finance, ACCA, CS, IT, Maths, ICMA inter, CA inter, PIPFA, BBA, AI/Fintech, Banking & Finance, Accounting & Finance, or Business Analytics", applyLink:"https://nsis.navttc.gov.pk/"
-    },
-    {
-      id: 5,
-      title: "Cyber Security (CEH)",
-      qualification:
-      "Bachelor in IT, CS, Maths, Statistics, Economics, Physics or Engineering (or 5th semester enrolled)", 
-      applyLink:"https://nsis.navttc.gov.pk/"
-    },
-    { id: 6, title: "English Language (IELTS/PTE B1–B2 CEFR)", qualification: "Matric OR 3 Months Vocational Certificate", applyLink:"https://nsis.navttc.gov.pk/" },
-    { id: 7, title: "German Language A1", qualification: "Matric OR 3 Months Vocational Certificate" , applyLink:"https://nsis.navttc.gov.pk/" },
-    { id: 8, title: "Professional Photography, Documentary Ad Making", qualification: "Intermediate" , applyLink:"https://nsis.navttc.gov.pk/" },
-  ];
-
+  const [programs, setPrograms] = useState([]);
+  const [filteredPrograms, setFilteredPrograms] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [filteredTrades, setFilteredTrades] = useState(trades);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  //  debounce method
+  // Fetch programs on component mount
+  useEffect(() => {
+    fetchPrograms();
+  }, []);
+
+  // Fetch programs from API
+  const fetchPrograms = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await navttcProgramService.getAllPrograms();
+      
+      // Handle both direct array response and paginated response
+      const programsList = Array.isArray(data) ? data : data.data || [];
+      setPrograms(programsList);
+      setFilteredPrograms(programsList);
+    } catch (err) {
+      console.error('Failed to fetch programs:', err);
+      const errorMessage = err.response?.data?.message || 
+                          err.message || 
+                          'Failed to load programs. Please try again later.';
+      setError(errorMessage);
+      setPrograms([]);
+      setFilteredPrograms([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Debounce search method
   useEffect(() => {
     const timer = setTimeout(() => {
       const query = searchText.toLowerCase().trim();
 
       if (!query) {
-        setFilteredTrades(trades);
+        setFilteredPrograms(programs);
         return;
       }
 
-      const filtered = trades.filter(
-        (trade) =>
-          trade.title.toLowerCase().includes(query) ||
-          trade.qualification.toLowerCase().includes(query)
+      const filtered = programs.filter(
+        (program) =>
+          program.title.toLowerCase().includes(query) ||
+          program.required_qualification.toLowerCase().includes(query)
       );
 
-      setFilteredTrades(filtered);
+      setFilteredPrograms(filtered);
     }, 400); // debounce delay
 
     return () => clearTimeout(timer);
-  }, [searchText, trades]);
+  }, [searchText, programs]);
 
   return (
     <section className="trades-section container my-5">
@@ -63,50 +71,69 @@ const NavttcPrograms = () => {
           placeholder="Search trade or qualification"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          disabled={loading}
         />
       </div>
 
-      {/* TABLE */}
-      <div className="table-responsive">
-        <table className="table trades-table">
-          <thead>
-            <tr>
-              <th>S.#</th>
-              <th>Apply for New Trade</th>
-              <th>Required Qualification</th>
-              <th className="text-end">Registration</th>
-            </tr>
-          </thead>
+      {/* ERROR MESSAGE */}
+      {error && (
+        <div className="alert alert-danger alert-dismissible fade show" role="alert">
+          {error}
+          <button type="button" className="btn-close" onClick={() => setError(null)}></button>
+        </div>
+      )}
 
-          <tbody>
-            {filteredTrades.length ? (
-              filteredTrades.map((trade, index) => (
-                <tr key={trade.id}>
-                  <td>{index + 1}</td>
-                  <td>{trade.title}</td>
-                  <td>{trade.qualification}</td>
-                  <td className="text-end">
-                  <a
-                    href={trade.applyLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn  btn-sm btn-apply"
-                  >
-                    Apply Now
-                  </a>
-                </td>
-                </tr>
-              ))
-            ) : (
+      {/* LOADING STATE */}
+      {loading && (
+        <div className="text-center py-5">
+          <Loader size={32} className="spinner-border" />
+          <p className="mt-3">Loading programs...</p>
+        </div>
+      )}
+
+      {/* TABLE */}
+      {!loading && (
+        <div className="table-responsive">
+          <table className="table trades-table">
+            <thead>
               <tr>
-                <td colSpan="4" className="text-center py-4">
-                  No matching trades found.
-                </td>
+                <th>S.#</th>
+                <th>Apply for New Trade</th>
+                <th>Required Qualification</th>
+                <th className="text-end">Registration</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody>
+              {filteredPrograms.length ? (
+                filteredPrograms.map((program, index) => (
+                  <tr key={program.id}>
+                    <td>{index + 1}</td>
+                    <td>{program.title}</td>
+                    <td>{program.required_qualification}</td>
+                    <td className="text-end">
+                      <a
+                        href={program.apply_link || "https://nsis.navttc.gov.pk/"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-sm btn-apply"
+                      >
+                        Apply Now
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="4" className="text-center py-4">
+                    No matching trades found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </section>
   );
 };
