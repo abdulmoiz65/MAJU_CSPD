@@ -1,0 +1,158 @@
+.section-title {
+  font-size: 35px !important;
+  font-weight: 800 !important;
+  margin-bottom: 20px;
+  font-style: normal;
+  text-transform: uppercase;
+}
+.underline-word {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-word::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;     /* distance from text */
+  width: 100%;
+  height: 6px;      /* underline thickness */
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+/* CARD */
+.program-card {
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-6px);
+}
+
+/* IMAGE */
+.program-img {
+  margin: 25px 25px ;  
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+  /* border: 2px solid var(--primary-color); */
+  width: 85%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* BODY */
+.program-body {
+  padding: 1.2rem;
+}
+
+.program-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.8rem;
+}
+
+.program-meta {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+/* ACTIONS */
+/* ACTIONS */
+.program-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 1rem;
+}
+
+/* COMMON BUTTON STYLES */
+.program-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  padding: 7px 12px;
+  border-radius: 0; /* ZERO radius */
+  background-color: var(--primary-color);
+  color: #fff;
+  border: 1px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+/* ICON */
+.program-actions .btn svg {
+  color: inherit;
+}
+
+/* HOVER EFFECT */
+.program-actions .btn:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+/* VIEW ALL PROGRAMS BUTTON WRAPPER */
+.view-all-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* BUTTON STYLE (your provided design) */
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 20px;
+  font-size: 14px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: color 0.4s ease;
+  border: 2px solid var(--primary-color);
+  z-index: 1;
+  width: 260px;
+  height: 50px;
+  text-align: center;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 100%;
+  background-color: #fff;
+  z-index: -1;
+  transition: width 0.4s ease;
+}
+
+.button:hover::before {
+  width: 120%;
+}
+
+.button:hover {
+  color: var(--primary-color);
+}
+
+.button span {
+  font-size: 1.1rem;
+  white-space: normal;
+  font-weight: 600;
+}
+
+@media (max-width: 576px) {
+  .button {
+    width: 100%;
+  }
+}

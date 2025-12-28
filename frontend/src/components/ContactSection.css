@@ -1,0 +1,53 @@
+.contact {
+  font-family: "Montserrat", sans-serif;
+  color: #222;
+}
+
+/* University block */
+.contact-university {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 16px;
+}
+
+.contact-university h5 {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.contact-university p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+/* Staff rows */
+.contact-staff {
+  margin-top: 30px;
+}
+
+.staff-row {
+  padding: 16px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.staff-row h6 {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.staff-row .role {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.staff-contact {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.staff-contact span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

@@ -1,0 +1,100 @@
+/* ================= BASE ================= */
+.simple-navbar {
+  font-family: "Montserrat", sans-serif;
+  background: #112369; /* University Blue */
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+/* ================= LOGO ================= */
+.simple-navbar .navbar-brand {
+  padding: 0;
+}
+
+.simple-navbar .brand-logo {
+  height: 60px;
+  width: auto;
+}
+
+/* Desktop sizing */
+@media (min-width: 992px) {
+  .simple-navbar {
+    height: 90px;
+  }
+
+  .simple-navbar .brand-logo {
+    height: 150px;
+  }
+}
+
+/* ================= LINKS ================= */
+.simple-navbar .nav-link {
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+}
+
+/* Underline hover */
+.simple-navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.simple-navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Lock color */
+.simple-navbar .nav-link:hover {
+  color: #fff;
+}
+
+/* ================= DROPDOWN (DESKTOP) ================= */
+@media (min-width: 992px) {
+  .simple-navbar .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+}
+
+.simple-navbar .dropdown-menu {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* ================= TOGGLER ================= */
+.simple-navbar .navbar-toggler {
+  border: none;
+}
+
+.simple-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.simple-navbar .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ================= OFFCANVAS ================= */
+.offcanvas {
+  font-family: "Montserrat", sans-serif;
+}
+
+.offcanvas .nav-link {
+  color: #000;
+  padding: 0.6rem 0;
+}
+
+.offcanvas button.nav-link {
+  background: none;
+  border: none;
+  font-weight: 600;
+}

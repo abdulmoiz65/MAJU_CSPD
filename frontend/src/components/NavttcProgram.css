@@ -1,0 +1,41 @@
+.trades-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  max-width: 350px;
+  border-radius: 4px;
+}
+
+.trades-search input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+.trades-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.trades-table td {
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.trades-table tbody tr:nth-child(odd) {
+  background: #f7f7f7;
+}
+.btn-apply{
+  background-color: var(--primary-color);
+  color: #fff;
+  border: 3px solid var(--primary-color);
+  border-radius: none !important;
+}
+.btn-apply:hover{
+  border: 3px solid var(--primary-color);
+  color: var(--primary-color);
+} 

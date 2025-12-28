@@ -1,0 +1,35 @@
+.section-title {
+  font-weight: 600;
+  color: #000;
+}
+
+.title-underline {
+  width: 100%;
+  border-top: 2px solid #ccc;
+  margin-top: 0;
+}
+
+.message-heading {
+  font-weight: 600;
+  color: #000;
+}
+
+.president-message p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* Image styling */
+.image-wrapper {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.president-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

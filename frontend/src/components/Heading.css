@@ -1,0 +1,75 @@
+/* Heading.css */
+
+/* Placeholder CSS Variables (Replace with your actual values) */
+:root {
+  --soft: #f8f9fa; /* Example light color for text */
+  --name: #007bff; /* Example primary color for underline */
+  --title: #343a40; /* Example dark color for background */
+}
+
+/* 1. Section Wrapper */
+.HeadingSection {
+  background: #112369; /* Background color of the whole section */
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* 2. Container (Max Width & Centering) */
+.HeadingContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* 3. Header Styling (Title and Underline wrapper) */
+.HeadingHeader h1 {
+  margin-top: 5rem; 
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--soft);
+  margin-bottom: 0.25rem;
+  /* Using clamp for responsive font sizing */
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+/* Large screen font size */
+@media (min-width: 1200px) {
+  .HeadingHeader h1 {
+    font-size: 74px; 
+  }
+}
+
+.HeadingHeader .underline {
+  width: 48px;
+  height: 3px;
+  background: var(--soft);
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+/* 4. Introduction Paragraph */
+.HeadingIntro {
+  color: var(--soft);
+  font-size: 15px;
+  max-width: 1100px;
+  font-family: 'PT Serif', serif;
+}
+
+
+/* --- Utility Classes (Simulated Bootstrap) --- */
+
+.py-4 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .py-md-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}

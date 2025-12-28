@@ -1,0 +1,23 @@
+:root {
+   --primary-color: #112369;
+   --secondary-color: #D82C20;
+   --yellow-color: #E3A900;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  height: 100%;
+  width: 100%; 
+  overflow-x: hidden;
+}
