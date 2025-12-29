@@ -1,74 +1,90 @@
 import "./UpcomingPrograms.css";
 import { CalendarDays, MapPin, Search } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UpcomingPrograms = () => {
+  const navigate = useNavigate();
 
   const months = [
     "JAN","FEB","MAR","APR","MAY","JUN",
     "JUL","AUG","SEP","OCT","NOV","DEC"
   ];
 
-  // 🔹 ORIGINAL DATA (DB later)
-  const programsByMonth = {
-    DEC: [
-      {
-        title: "International Workplace Mediators’ Training Program",
-        date: "08 to 12 December, 2025",
-        location: "IBA City Campus, Karachi",
-      },
-      {
-        title: "Directors' Training Program",
-        date: "08 to 12 December, 2025",
-        location: "IBA in Islamabad, NIBAF",
-      },
-      {
-        title: "Directors' Training Program for SOEs",
-        date: "15 to 17 December, 2025",
-        location: "IBA in Islamabad, NIBAF",
-      },
-    ],
-    JAN: [
-      {
-        title: "The ESG Boardroom",
-        date: "12–14 January, 2026",
-        location: "IBA in Islamabad, NIBAF",
-      },
-    ],
-  };
-
   // 🔹 STATE
   const [searchText, setSearchText] = useState("");
-  const [filteredData, setFilteredData] = useState(programsByMonth);
+  const [allPrograms, setAllPrograms] = useState({});
+  const [displayData, setDisplayData] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // 🔹 FETCH UPCOMING PROGRAMS FROM API
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:8000/api/upcoming-programs/by-month");
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch programs");
+        }
+
+        const data = await response.json();
+        console.log("API Response:", data); // Debug log
+        
+        if (data.data && typeof data.data === 'object' && Object.keys(data.data).length > 0) {
+          console.log("Programs loaded successfully:", Object.keys(data.data)); // Debug
+          setAllPrograms(data.data);
+          setDisplayData(data.data);
+        } else {
+          console.warn("No programs data received:", data.data);
+          setAllPrograms({});
+          setDisplayData({});
+        }
+      } catch (err) {
+        setError(err.message);
+        console.error("Error fetching programs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
 
   // 🔹 DEBOUNCED SEARCH
   useEffect(() => {
     const timer = setTimeout(() => {
-
       if (!searchText.trim()) {
-        setFilteredData(programsByMonth);
+        // Show all programs when search is empty
+        console.log("Clearing search, showing all programs:", allPrograms); // Debug
+        setDisplayData(allPrograms);
         return;
       }
 
+      console.log("Searching for:", searchText); // Debug
+      // Filter programs based on search text
       const filtered = {};
 
-      months.forEach((month) => {
-        const programs = programsByMonth[month]?.filter((p) =>
-          p.title.toLowerCase().includes(searchText.toLowerCase())
-        );
+      Object.keys(allPrograms).forEach((month) => {
+        const monthPrograms = allPrograms[month];
+        if (Array.isArray(monthPrograms)) {
+          const programs = monthPrograms.filter((p) =>
+            p.title.toLowerCase().includes(searchText.toLowerCase())
+          );
 
-        if (programs?.length) {
-          filtered[month] = programs;
+          if (programs?.length) {
+            filtered[month] = programs;
+          }
         }
       });
 
-      setFilteredData(filtered);
-
-    }, 300); // ⏱ debounce delay
+      console.log("Filtered results:", filtered); // Debug
+      setDisplayData(filtered);
+    }, 300);
 
     return () => clearTimeout(timer);
-
-  }, [searchText]);
+  }, [searchText, allPrograms]);
 
   // 🔹 scroll handler
   const scrollToMonth = (month) => {
@@ -78,13 +94,52 @@ const UpcomingPrograms = () => {
     }
   };
 
-  const monthsToRender = searchText
-  ? Object.keys(filteredData)   // only months with results
-  : months;                     // all months
+  // 🔹 Determine which months to render
+  const monthsToRender = searchText.trim()
+    ? Object.keys(displayData)  // only months with search results
+    : months;  // all months
 
+  // 🔹 FORMAT DATE FROM DATABASE
+  const formatDate = (program) => {
+    if (!program.start_date && !program.end_date) return "";
+    
+    const startDate = new Date(program.start_date);
+    const endDate = new Date(program.end_date);
+
+    const startDay = startDate.toLocaleDateString("en-US", { day: "2-digit" });
+    const endDay = endDate.toLocaleDateString("en-US", { day: "2-digit" });
+    const month = endDate.toLocaleDateString("en-US", { month: "long" });
+    const year = endDate.getFullYear();
+
+    if (program.start_date && program.end_date) {
+      return `${startDay} to ${endDay} ${month}, ${year}`;
+    } else if (program.start_date) {
+      return `${startDate.toLocaleDateString("en-US", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      })}`;
+    }
+    return "";
+  };
+
+  if (loading) {
+    return (
+      <section className="up-programs container my-5">
+        <div className="text-center py-5">
+          <p>Loading upcoming programs...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="up-programs container my-5">
+      {error && (
+        <div className="alert alert-danger mb-4">
+          Error: {error}
+        </div>
+      )}
 
       {/* HEADER */}
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -130,38 +185,37 @@ const UpcomingPrograms = () => {
       {/* MONTH SECTIONS */}
       {monthsToRender.map((month) => (
         <div key={month} id={month} className="mb-4">
-
           <div className="month-heading">{month}</div>
 
           <div className="program-list">
-            {filteredData[month]?.length ? (
-              filteredData[month].map((p, index) => (
+            {displayData[month]?.length ? (
+              displayData[month].map((p, index) => (
                 <div
-                  key={index}
+                  key={p.id}
                   className={`program-row ${index % 2 !== 0 ? "alt" : ""}`}
                 >
                   <div className="program-meta">
                     <CalendarDays size={14} />
-                    <span>{p.date}</span>
-                    <MapPin size={14} />
-                    <span>{p.location}</span>
+                    <span>{formatDate(p)}</span>
                   </div>
-                  <a href="#">{p.title}</a>
+                  <button
+                    className="program-title-link"
+                    onClick={() => navigate(`/program-detail/${p.id}`)}
+                  >
+                    {p.title}
+                  </button>
                 </div>
               ))
-                ) : (
-            !searchText && (
+            ) : (
+              !searchText && (
                 <div className="no-program">
-                No programs available for this month.
+                  No programs available for this month.
                 </div>
-            )
+              )
             )}
-
           </div>
-
         </div>
       ))}
-
     </section>
   );
 };
