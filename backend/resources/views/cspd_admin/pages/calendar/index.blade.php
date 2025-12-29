@@ -27,6 +27,8 @@
                     <th>PDF</th>
                     <th>Created At</th>
                     <th>Action</th>
+                    <th>Status</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -40,17 +42,33 @@
                             </a>
                         </td>
                         <td>{{ $calendar->created_at->format('d M Y') }}</td>
+                   <td class="d-flex gap-1">
+    <!-- Edit -->
+    <a href="{{ route('admin.calendars.edit', $calendar->id) }}"
+       class="btn btn-warning btn-sm">
+        <i class="fas fa-edit"></i>
+    </a>
+
+    <!-- Delete -->
+    <form action="{{ route('admin.calendars.destroy', $calendar->id) }}"
+          method="POST"
+          onsubmit="return confirm('Delete this calendar permanently?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger btn-sm">
+            <i class="fas fa-trash"></i>
+        </button>
+    </form>
+</td>
+
                         <td>
-                            <form action="{{ route('admin.calendars.destroy', $calendar->id) }}"
-                                  method="POST"
-                                  onsubmit="return confirm('Delete this calendar permanently?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash me-1"></i>Delete
-                                </button>
-                            </form>
-                        </td>
+    @if($calendar->status === 'active')
+        <span class="badge bg-success">Active</span>
+    @else
+        <span class="badge bg-secondary">Inactive</span>
+    @endif
+</td>
+
                     </tr>
                 @empty
                     <tr>

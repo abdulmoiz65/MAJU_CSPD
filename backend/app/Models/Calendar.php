@@ -9,6 +9,7 @@ class Calendar extends Model
     protected $fillable = [
         'title',
         'file_path',
+        'status',
     ];
     
 }
