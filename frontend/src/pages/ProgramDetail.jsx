@@ -11,6 +11,7 @@ import {
   FileText,
   ArrowLeft,
 } from "lucide-react";
+import Heading from "../components/Heading";
 import "./ProgramDetail.css";
 
 const ProgramDetail = () => {
@@ -19,6 +20,9 @@ const ProgramDetail = () => {
   const [program, setProgram] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // API base URL for constructing full URLs to backend resources
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
   useEffect(() => {
     const fetchProgram = async () => {
@@ -91,171 +95,171 @@ const ProgramDetail = () => {
   }
 
   return (
-    <div className="program-detail container my-5">
-      {/* Back Button */}
-      <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>
-        <ArrowLeft size={16} /> Back to Programs
-      </button>
+    <>
+      <Heading title="Program Details" />
+      <div className="program-detail container my-5">
+        {/* Back Button */}
+        <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>
+          <ArrowLeft size={16} /> Back to Programs
+        </button>
 
-      {/* Header Section */}
-      <div className="detail-header mb-5">
-        <h1 className="detail-title">{program.title}</h1>
+        {/* Header Section */}
+        <div className="detail-header mb-5">
+          <h1 className="detail-title">{program.title}</h1>
 
-        <div className="detail-meta-info">
-          {program.start_date && (
-            <div className="meta-item">
-              <CalendarDays size={18} />
-              <div>
-                <label>Date</label>
-                <span>{program.formatted_date || program.start_date}</span>
+          <div className="detail-meta-info">
+            {program.start_date && (
+              <div className="meta-item">
+                <CalendarDays size={18} />
+                <div>
+                  <label>Date</label>
+                  <span>{program.formatted_date || program.start_date}</span>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {program.duration && (
-            <div className="meta-item">
-              <Clock size={18} />
-              <div>
-                <label>Duration</label>
-                <span>{program.duration}</span>
+            {program.duration && (
+              <div className="meta-item">
+                <Clock size={18} />
+                <div>
+                  <label>Duration</label>
+                  <span>{program.duration}</span>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {program.fees && (
-            <div className="meta-item">
-              <DollarSign size={18} />
-              <div>
-                <label>Fees</label>
-                <span>{program.formatted_fees || `${program.currency} ${program.fees}`}</span>
+            {program.fees && (
+              <div className="meta-item">
+                <DollarSign size={18} />
+                <div>
+                  <label>Fees</label>
+                  <span>{program.formatted_fees || `${program.currency} ${program.fees}`}</span>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {program.total_hours && (
-            <div className="meta-item">
-              <Clock size={18} />
-              <div>
-                <label>Total Hours</label>
-                <span>{program.total_hours}</span>
+            {program.total_hours && (
+              <div className="meta-item">
+                <Clock size={18} />
+                <div>
+                  <label>Total Hours</label>
+                  <span>{program.total_hours}</span>
+                </div>
               </div>
+            )}
+          </div>
+
+          {program.timing && (
+            <div className="timing-section">
+              <strong>Timing:</strong> {program.timing}
             </div>
           )}
         </div>
 
-        {program.timing && (
-          <div className="timing-section">
-            <strong>Timing:</strong> {program.timing}
-          </div>
-        )}
+        {/* Main Content */}
+        <div className="detail-content">
+          {program.overview && (
+            <section className="detail-section">
+              <h3>
+                <BookOpen size={20} /> Overview
+              </h3>
+              <p>{program.overview}</p>
+            </section>
+          )}
+
+          {program.course_outline && (
+            <section className="detail-section">
+              <h3>
+                <FileText size={20} /> Course Outline
+              </h3>
+              <div className="text-content">{program.course_outline}</div>
+            </section>
+          )}
+
+          {program.learning_outcomes && (
+            <section className="detail-section">
+              <h3>
+                <Award size={20} /> Learning Outcomes
+              </h3>
+              <div className="text-content">{program.learning_outcomes}</div>
+            </section>
+          )}
+
+          {program.methodology && (
+            <section className="detail-section">
+              <h3>
+                <BookOpen size={20} /> Methodology
+              </h3>
+              <div className="text-content">{program.methodology}</div>
+            </section>
+          )}
+
+          {program.activities && (
+            <section className="detail-section">
+              <h3>
+                <Users size={20} /> Activities
+              </h3>
+              <div className="text-content">{program.activities}</div>
+            </section>
+          )}
+
+          {program.trainer_profile && (
+            <section className="detail-section">
+              <h3>
+                <Award size={20} /> Trainer Profile
+              </h3>
+              <div className="text-content">{program.trainer_profile}</div>
+            </section>
+          )}
+
+          {program.who_should_attend && (
+            <section className="detail-section">
+              <h3>
+                <Users size={20} /> Who Should Attend
+              </h3>
+              <div className="text-content">{program.who_should_attend}</div>
+            </section>
+          )}
+
+          {program.publications && (
+            <section className="detail-section">
+              <h3>
+                <FileText size={20} /> Publications
+              </h3>
+              <div className="text-content">{program.publications}</div>
+            </section>
+          )}
+
+          {program.discount_info && (
+            <section className="detail-section discount-section">
+              <h3>Discount Information</h3>
+              <div className="text-content">{program.discount_info}</div>
+            </section>
+          )}
+
+          {program.brochure && (
+            <section className="detail-section">
+              <h3>
+                <FileText size={20} /> Brochure
+              </h3>
+              <a
+                href={`${API_BASE_URL}/storage/${program.brochure}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                Download Brochure
+              </a>
+            </section>
+          )}
+        </div>
+
+        {/* CTA Section */}
+        <div className="detail-cta mt-5 pb-4">
+          <button className="btn btn-warning btn-lg me-2">Enroll Now</button>
+        </div>
       </div>
-
-      {/* Main Content */}
-      <div className="detail-content">
-        {program.overview && (
-          <section className="detail-section">
-            <h3>
-              <BookOpen size={20} /> Overview
-            </h3>
-            <p>{program.overview}</p>
-          </section>
-        )}
-
-        {program.course_outline && (
-          <section className="detail-section">
-            <h3>
-              <FileText size={20} /> Course Outline
-            </h3>
-            <div className="text-content">{program.course_outline}</div>
-          </section>
-        )}
-
-        {program.learning_outcomes && (
-          <section className="detail-section">
-            <h3>
-              <Award size={20} /> Learning Outcomes
-            </h3>
-            <div className="text-content">{program.learning_outcomes}</div>
-          </section>
-        )}
-
-        {program.methodology && (
-          <section className="detail-section">
-            <h3>
-              <BookOpen size={20} /> Methodology
-            </h3>
-            <div className="text-content">{program.methodology}</div>
-          </section>
-        )}
-
-        {program.activities && (
-          <section className="detail-section">
-            <h3>
-              <Users size={20} /> Activities
-            </h3>
-            <div className="text-content">{program.activities}</div>
-          </section>
-        )}
-
-        {program.trainer_profile && (
-          <section className="detail-section">
-            <h3>
-              <Award size={20} /> Trainer Profile
-            </h3>
-            <div className="text-content">{program.trainer_profile}</div>
-          </section>
-        )}
-
-        {program.who_should_attend && (
-          <section className="detail-section">
-            <h3>
-              <Users size={20} /> Who Should Attend
-            </h3>
-            <div className="text-content">{program.who_should_attend}</div>
-          </section>
-        )}
-
-        {program.publications && (
-          <section className="detail-section">
-            <h3>
-              <FileText size={20} /> Publications
-            </h3>
-            <div className="text-content">{program.publications}</div>
-          </section>
-        )}
-
-        {program.discount_info && (
-          <section className="detail-section discount-section">
-            <h3>Discount Information</h3>
-            <div className="text-content">{program.discount_info}</div>
-          </section>
-        )}
-
-        {program.brochure && (
-          <section className="detail-section">
-            <h3>
-              <FileText size={20} /> Brochure
-            </h3>
-            <a
-              href={program.brochure}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              Download Brochure
-            </a>
-          </section>
-        )}
-      </div>
-
-      {/* CTA Section */}
-      <div className="detail-cta mt-5 pb-4">
-        <button className="btn btn-warning btn-lg me-2">Enroll Now</button>
-        <button className="btn btn-outline-warning btn-lg">
-          Request More Info
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 
