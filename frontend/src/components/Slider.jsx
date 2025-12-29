@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Slider.css";
 
 // Import images
-import slide1 from "../assets/slider/1.JPG";
-import slide2 from "../assets/slider/2.jpeg";
-import slide3 from "../assets/slider/3.JPG";
-import slide4 from "../assets/slider/4.jpeg";
-import slide5 from "../assets/slider/5.jpeg";
+import slide1 from "../assets/slider/slide5.webp";
+import slide2 from "../assets/slider/slide4.webp";
+import slide3 from "../assets/slider/slide3.webp";
+import slide4 from "../assets/slider/slide2.webp";
+import slide5 from "../assets/slider/slide1.webp";
 import slide6 from "../assets/slider/7.JPG";
 import slide7 from "../assets/slider/8.jpeg";
 

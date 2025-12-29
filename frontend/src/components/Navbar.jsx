@@ -1,15 +1,35 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import calendarService from "../services/api/calendarService";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeCalendar, setActiveCalendar] = useState(null);
   const navigate = useNavigate();
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Fetch active calendar on mount
+  useEffect(() => {
+    const fetchCalendar = async () => {
+      try {
+        const response = await calendarService.getActiveCalendar();
+        if (response.success && response.data) {
+          setActiveCalendar(response.data);
+        }
+      } catch (error) {
+        // Silently fail - calendar link will be disabled
+        console.log('No active calendar available');
+      }
+    };
+    fetchCalendar();
   }, []);
 
   const closeOffcanvasAndNavigate = (path) => {
@@ -26,9 +46,8 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`navbar navbar-expand-lg fixed-top custom-navbar ${
-          scrolled ? "scrolled" : ""
-        }`}
+        className={`navbar navbar-expand-lg fixed-top custom-navbar ${scrolled ? "scrolled" : ""
+          }`}
       >
         <div className="container-fluid px-lg-5">
           <a className="navbar-brand" href="#">
@@ -57,7 +76,7 @@ const Navbar = () => {
                   About
                 </a>
                 <ul className="dropdown-menu">
-                         <li>
+                  <li>
                     <Link className="dropdown-item" to="about_maju">
                       About MAJU
                     </Link>
@@ -72,7 +91,7 @@ const Navbar = () => {
                       President message
                     </Link>
                   </li>
-              
+
                 </ul>
               </li>
 
@@ -86,17 +105,29 @@ const Navbar = () => {
                       Upcoming Programs
                     </Link>
                   </li>
-                    <li>
+                  <li>
                     <Link className="dropdown-item" to="Navttc">
-                        Navttc Programs
+                      Navttc Programs
                     </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Download Calender
-                    </a>
+                    {activeCalendar ? (
+                      <a
+                        className="dropdown-item"
+                        href={`${API_BASE_URL}/storage/${activeCalendar.file_path}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download
+                      >
+                        Download Calender
+                      </a>
+                    ) : (
+                      <span className="dropdown-item text-muted" style={{ cursor: 'not-allowed' }}>
+                        Download Calender (Not Available)
+                      </span>
+                    )}
                   </li>
-              
+
                 </ul>
               </li>
 
@@ -107,12 +138,12 @@ const Navbar = () => {
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to="cancellation_policy">
-                        Cancellation Policy
+                      Cancellation Policy
                     </Link>
                   </li>
-                 
-                 
-              
+
+
+
                 </ul>
               </li>
               <li className="nav-item">
@@ -142,7 +173,7 @@ const Navbar = () => {
                 Home
               </a>
             </li>
-            
+
             <li className="nav-item">
               <button
                 className="nav-link w-100 text-start"
@@ -181,9 +212,21 @@ const Navbar = () => {
                 <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/Navttc")} style={{ cursor: "pointer" }}>
                   Navttc Programs
                 </a>
-                <a className="nav-link" href="#">
-                  Download Calender
-                </a>
+                {activeCalendar ? (
+                  <a
+                    className="nav-link"
+                    href={`${API_BASE_URL}/storage/${activeCalendar.file_path}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                  >
+                    Download Calender
+                  </a>
+                ) : (
+                  <span className="nav-link text-muted" style={{ cursor: 'not-allowed' }}>
+                    Download Calender (Not Available)
+                  </span>
+                )}
               </div>
             </li>
 

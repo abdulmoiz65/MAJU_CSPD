@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\NavttcProgramController;
 use App\Http\Controllers\Api\UpcomingProgramController;
+use App\Http\Controllers\Api\CalendarController;
+
+// Calendar API route
+Route::get('/calendar/active', [CalendarController::class, 'getActiveCalendar']);
 
 // Public API routes
 Route::prefix('navttc-programs')->group(function () {
