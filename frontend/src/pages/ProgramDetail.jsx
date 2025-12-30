@@ -98,10 +98,7 @@ const ProgramDetail = () => {
     <>
       <Heading title="Program Details" />
       <div className="program-detail container my-5">
-        {/* Back Button */}
-        <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>
-          <ArrowLeft size={16} /> Back to Programs
-        </button>
+
 
         {/* Header Section */}
         <div className="detail-header mb-5">

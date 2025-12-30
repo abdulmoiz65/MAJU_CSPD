@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-   class UpcomingProgram extends Model
+class UpcomingProgram extends Model
 {
     protected $fillable = [
         'title',
         'overview',
-        'course_outline', 
+        'course_outline',
         'learning_outcomes',
         'methodology',
         'activities',
@@ -28,13 +28,21 @@ use Illuminate\Database\Eloquent\Model;
         'brochure',
         'status'
     ];
-    
+
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
         'fees' => 'decimal:2'
     ];
-    
+
+    // Append accessors to JSON output
+    protected $appends = [
+        'formatted_date',
+        'display_date',
+        'formatted_fees',
+        'date_duration'
+    ];
+
     // Accessor for formatted date
     public function getFormattedDateAttribute()
     {
@@ -45,7 +53,7 @@ use Illuminate\Database\Eloquent\Model;
         }
         return null;
     }
-    
+
     // Accessor for display date (like "December 11, 2025")
     public function getDisplayDateAttribute()
     {
@@ -54,7 +62,7 @@ use Illuminate\Database\Eloquent\Model;
         }
         return null;
     }
-    
+
     // Accessor for formatted fees
     public function getFormattedFeesAttribute()
     {
@@ -63,7 +71,7 @@ use Illuminate\Database\Eloquent\Model;
         }
         return 'Free';
     }
-    
+
     // Accessor for date and duration summary
     public function getDateDurationAttribute()
     {
@@ -77,7 +85,7 @@ use Illuminate\Database\Eloquent\Model;
         if ($this->total_hours) {
             $parts[] = $this->total_hours;
         }
-        
+
         return implode(' | ', $parts);
     }
 }
