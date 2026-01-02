@@ -38,6 +38,8 @@ class UpcomingProgramController extends Controller
             'methodology' => 'nullable|string',
             'activities' => 'nullable|string',
             'trainer_profile' => 'required|string',
+            'trainer_image' => 'nullable|image|max:2048',
+            'enroll_link' => 'nullable|url',
             'who_should_attend' => 'nullable|string',
             'publications' => 'nullable|string',
             'start_date' => 'required|date',
@@ -50,6 +52,18 @@ class UpcomingProgramController extends Controller
             'brochure' => 'nullable|file|mimes:pdf|max:5120',
             'status' => 'required|in:active,inactive',
         ]);
+
+        if (empty($validated['enroll_link'])) {
+            $validated['enroll_link'] = 'https://docs.google.com/forms/d/e/1FAIpQLSdWrXKQl_OMKYznN8sUVK7SYjP6VTQ-_AHhhI2eKKUUxKWWVw/viewform';
+        }
+
+        // Handle trainer image
+        if ($request->hasFile('trainer_image')) {
+            $file = $request->file('trainer_image');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('uploads/trainer-image', $filename, 'public');
+            $validated['trainer_image'] = $path;
+        }
 
         // Handle the brochure file
         if ($request->hasFile('brochure')) {
@@ -99,6 +113,8 @@ class UpcomingProgramController extends Controller
             'methodology' => 'nullable|string',
             'activities' => 'nullable|string',
             'trainer_profile' => 'required|string',
+            'trainer_image' => 'nullable|image|max:2048',
+            'enroll_link' => 'nullable|url',
             'who_should_attend' => 'nullable|string',
             'publications' => 'nullable|string',
             'start_date' => 'required|date',
@@ -112,13 +128,30 @@ class UpcomingProgramController extends Controller
             'status' => 'required|in:active,inactive',
         ]);
 
+        if (empty($validated['enroll_link'])) {
+            $validated['enroll_link'] = 'https://docs.google.com/forms/d/e/1FAIpQLSdWrXKQl_OMKYznN8sUVK7SYjP6VTQ-_AHhhI2eKKUUxKWWVw/viewform';
+        }
+
+        // Handle trainer image
+        if ($request->hasFile('trainer_image')) {
+            // Delete old image
+            if ($program->trainer_image && Storage::disk('public')->exists($program->trainer_image)) {
+                Storage::disk('public')->delete($program->trainer_image);
+            }
+
+            $file = $request->file('trainer_image');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('uploads/trainer-image', $filename, 'public');
+            $validated['trainer_image'] = $path;
+        }
+
         // Handle the brochure file
         if ($request->hasFile('brochure')) {
             // Delete old brochure if it exists
             if ($program->brochure && Storage::disk('public')->exists($program->brochure)) {
                 Storage::disk('public')->delete($program->brochure);
             }
-            
+
             $file = $request->file('brochure');
             $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('uploads/brochures', $filename, 'public');
@@ -138,12 +171,17 @@ class UpcomingProgramController extends Controller
     public function destroy($id)
     {
         $program = UpcomingProgram::findOrFail($id);
-        
+
+        // Delete trainer image if exists
+        if ($program->trainer_image && Storage::disk('public')->exists($program->trainer_image)) {
+            Storage::disk('public')->delete($program->trainer_image);
+        }
+
         // Delete the brochure file if it exists
         if ($program->brochure && Storage::disk('public')->exists($program->brochure)) {
             Storage::disk('public')->delete($program->brochure);
         }
-        
+
         $program->delete();
 
         return redirect()

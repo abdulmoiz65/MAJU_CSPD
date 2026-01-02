@@ -30,87 +30,93 @@ class CalendarController extends Controller
     /**
      * Store calendar PDF
      */
-   public function store(Request $request)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'calendar_pdf' => 'required|mimes:pdf|max:5120',
-        'status' => 'required|in:active,inactive',
-    ]);
-
-    $file = $request->file('calendar_pdf');
-    $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
-    $path = $file->storeAs('uploads/download-calendar', $filename, 'public');
-
-    // 🔥 If new calendar is ACTIVE → deactivate others
-    if ($request->status === 'active') {
-        Calendar::where('status', 'active')->update([
-            'status' => 'inactive'
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'calendar_pdf' => 'required|mimes:pdf|max:2048',
+            'status' => 'required|in:active,inactive',
+        ], [
+            'calendar_pdf.max' => 'The file should not exceed 2MB.',
+            'calendar_pdf.uploaded' => 'The file failed to upload. Please ensure it does not exceed 2MB.',
         ]);
-    }
 
-    Calendar::create([
-        'title' => $request->title,
-        'file_path' => $path,
-        'status' => $request->status,
-    ]);
+        $file = $request->file('calendar_pdf');
+        $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('uploads/download-calendar', $filename, 'public');
 
-    return redirect()
-        ->route('admin.calendars.index')
-        ->with('success', 'Calendar uploaded successfully.');
-}
-
-public function edit(Calendar $calendar)
-{
-    return view('cspd_admin.pages.calendar.edit', compact('calendar'));
-}
-
-public function update(Request $request, Calendar $calendar)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'calendar_pdf' => 'nullable|mimes:pdf|max:5120',
-        'status' => 'required|in:active,inactive',
-    ]);
-
-    // If status is being set to active → deactivate others
-    if ($request->status === 'active') {
-        Calendar::where('id', '!=', $calendar->id)
-            ->where('status', 'active')
-            ->update(['status' => 'inactive']);
-    }
-
-    $data = [
-        'title' => $request->title,
-        'status' => $request->status,
-    ];
-
-    // Replace PDF if uploaded
-    if ($request->hasFile('calendar_pdf')) {
-
-        // Delete old file
-        if (
-            $calendar->file_path &&
-            Storage::disk('public')->exists($calendar->file_path)
-        ) {
-            Storage::disk('public')->delete($calendar->file_path);
+        // 🔥 If new calendar is ACTIVE → deactivate others
+        if ($request->status === 'active') {
+            Calendar::where('status', 'active')->update([
+                'status' => 'inactive'
+            ]);
         }
 
-        $filename = Str::uuid() . '.' .
-                    $request->file('calendar_pdf')->getClientOriginalExtension();
+        Calendar::create([
+            'title' => $request->title,
+            'file_path' => $path,
+            'status' => $request->status,
+        ]);
 
-        $path = $request->file('calendar_pdf')
-                        ->storeAs('uploads/download-calendar', $filename, 'public');
-
-        $data['file_path'] = $path;
+        return redirect()
+            ->route('admin.calendars.index')
+            ->with('success', 'Calendar uploaded successfully.');
     }
 
-    $calendar->update($data);
+    public function edit(Calendar $calendar)
+    {
+        return view('cspd_admin.pages.calendar.edit', compact('calendar'));
+    }
 
-    return redirect()
-        ->route('admin.calendars.index')
-        ->with('success', 'Calendar updated successfully.');
-}
+    public function update(Request $request, Calendar $calendar)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'calendar_pdf' => 'nullable|mimes:pdf|max:2048',
+            'status' => 'required|in:active,inactive',
+        ], [
+            'calendar_pdf.max' => 'The file should not exceed 2MB.',
+            'calendar_pdf.uploaded' => 'The file failed to upload. Please ensure it does not exceed 2MB.',
+        ]);
+
+        // If status is being set to active → deactivate others
+        if ($request->status === 'active') {
+            Calendar::where('id', '!=', $calendar->id)
+                ->where('status', 'active')
+                ->update(['status' => 'inactive']);
+        }
+
+        $data = [
+            'title' => $request->title,
+            'status' => $request->status,
+        ];
+
+        // Replace PDF if uploaded
+        if ($request->hasFile('calendar_pdf')) {
+
+            // Delete old file
+            if (
+                $calendar->file_path &&
+                Storage::disk('public')->exists($calendar->file_path)
+            ) {
+                Storage::disk('public')->delete($calendar->file_path);
+            }
+
+            $filename = Str::uuid() . '.' .
+                $request->file('calendar_pdf')->getClientOriginalExtension();
+
+            $path = $request->file('calendar_pdf')
+                ->storeAs('uploads/download-calendar', $filename, 'public');
+
+            $data['file_path'] = $path;
+        }
+
+        $calendar->update($data);
+
+        return redirect()
+            ->route('admin.calendars.index')
+            ->with('success', 'Calendar updated successfully.');
+    }
 
     /**
      * Permanently delete calendar

@@ -109,6 +109,13 @@
                     </div>
                 @endif
 
+                <!-- Enroll Link Button -->
+                <div class="mb-4 text-center">
+                    <a href="{{ $program->enroll_link }}" target="_blank" class="btn btn-success btn-lg">
+                        <i class="fas fa-edit me-2"></i>Enroll Now
+                    </a>
+                </div>
+
                 <!-- Tabs for Details -->
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -185,6 +192,14 @@
                     <div class="tab-pane fade" id="nav-trainer" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
+                                @if ($program->trainer_image)
+                                    <div class="row mb-3">
+                                        <div class="col-md-3">
+                                            <img src="{{ asset('storage/' . $program->trainer_image) }}" alt="Trainer Image"
+                                                class="img-fluid rounded img-thumbnail">
+                                        </div>
+                                    </div>
+                                @endif
                                 {!! nl2br(e($program->trainer_profile)) !!}
                             </div>
                         </div>
@@ -245,8 +260,7 @@
                             <div class="card-body">
                                 <h6><i class="fas fa-cog me-2"></i>Actions</h6>
                                 <div class="btn-group-vertical w-100" role="group">
-                                    <a href="{{ route('admin.upcoming.edit', $program->id) }}"
-                                        class="btn btn-warning mb-2">
+                                    <a href="{{ route('admin.upcoming.edit', $program->id) }}" class="btn btn-warning mb-2">
                                         <i class="fas fa-edit me-2"></i>Edit Program
                                     </a>
                                     <form action="{{ route('admin.upcoming.destroy', $program->id) }}" method="POST"
@@ -269,7 +283,7 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Auto-activate first tab
             const firstTab = new bootstrap.Tab(document.querySelector('#nav-overview-tab'));
             firstTab.show();

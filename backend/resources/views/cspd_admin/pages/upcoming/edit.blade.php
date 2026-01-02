@@ -81,8 +81,7 @@
                             <label class="form-label">
                                 <i class="fas fa-clock me-1"></i> Total Hours *
                             </label>
-                            <input type="text" name="total_hours"
-                                value="{{ old('total_hours', $program->total_hours) }}"
+                            <input type="text" name="total_hours" value="{{ old('total_hours', $program->total_hours) }}"
                                 class="form-control @error('total_hours') is-invalid @enderror" placeholder="e.g., 8 Hours"
                                 required>
                             @error('total_hours')
@@ -122,7 +121,8 @@
                             <label class="form-label">
                                 <i class="fas fa-tag me-1"></i> Discount Information
                             </label>
-                            <textarea name="discount_info" rows="3" class="form-control @error('discount_info') is-invalid @enderror"
+                            <textarea name="discount_info" rows="3"
+                                class="form-control @error('discount_info') is-invalid @enderror"
                                 placeholder="e.g., 10% early bird discount">{{ old('discount_info', $program->discount_info) }}</textarea>
                             @error('discount_info')
                                 <span class="error-feedback">{{ $message }}</span>
@@ -138,8 +138,7 @@
                                 <option value="active" {{ old('status', $program->status) == 'active' ? 'selected' : '' }}>
                                     Active
                                 </option>
-                                <option value="inactive"
-                                    {{ old('status', $program->status) == 'inactive' ? 'selected' : '' }}>
+                                <option value="inactive" {{ old('status', $program->status) == 'inactive' ? 'selected' : '' }}>
                                     Inactive
                                 </option>
                             </select>
@@ -155,7 +154,8 @@
                     <label class="form-label">
                         <i class="fas fa-file-alt me-1"></i> Course Overview *
                     </label>
-                    <textarea name="overview" rows="4" class="form-control @error('overview') is-invalid @enderror" required>{{ old('overview', $program->overview) }}</textarea>
+                    <textarea name="overview" rows="4" class="form-control @error('overview') is-invalid @enderror"
+                        required>{{ old('overview', $program->overview) }}</textarea>
                     @error('overview')
                         <span class="error-feedback">{{ $message }}</span>
                     @enderror
@@ -166,7 +166,8 @@
                     <label class="form-label">
                         <i class="fas fa-list-ol me-1"></i> Course Outline *
                     </label>
-                    <textarea name="course_outline" rows="6" class="form-control @error('course_outline') is-invalid @enderror"
+                    <textarea name="course_outline" rows="6"
+                        class="form-control @error('course_outline') is-invalid @enderror"
                         required>{{ old('course_outline', $program->course_outline) }}</textarea>
                     @error('course_outline')
                         <span class="error-feedback">{{ $message }}</span>
@@ -179,7 +180,8 @@
                         <i class="fas fa-graduation-cap me-1"></i> Learning Outcomes *
                     </label>
                     <textarea name="learning_outcomes" rows="4"
-                        class="form-control @error('learning_outcomes') is-invalid @enderror" required>{{ old('learning_outcomes', $program->learning_outcomes) }}</textarea>
+                        class="form-control @error('learning_outcomes') is-invalid @enderror"
+                        required>{{ old('learning_outcomes', $program->learning_outcomes) }}</textarea>
                     @error('learning_outcomes')
                         <span class="error-feedback">{{ $message }}</span>
                     @enderror
@@ -190,9 +192,29 @@
                     <label class="form-label">
                         <i class="fas fa-chalkboard-teacher me-1"></i> Trainer Profile *
                     </label>
-                    <textarea name="trainer_profile" rows="4" class="form-control @error('trainer_profile') is-invalid @enderror"
+                    <textarea name="trainer_profile" rows="4"
+                        class="form-control @error('trainer_profile') is-invalid @enderror"
                         required>{{ old('trainer_profile', $program->trainer_profile) }}</textarea>
                     @error('trainer_profile')
+                        <span class="error-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Trainer Image (Optional) -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-image me-1"></i> Trainer Image
+                    </label>
+                    @if ($program->trainer_image)
+                        <div class="mb-2">
+                            <img src="{{ asset('storage/' . $program->trainer_image) }}" alt="Trainer Image"
+                                class="img-thumbnail" style="max-height: 100px;">
+                        </div>
+                    @endif
+                    <input type="file" name="trainer_image" accept="image/*"
+                        class="form-control @error('trainer_image') is-invalid @enderror">
+                    <small class="text-muted">Upload to replace (Optional, Max 2MB)</small>
+                    @error('trainer_image')
                         <span class="error-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -205,7 +227,8 @@
                             <label class="form-label">
                                 <i class="fas fa-tasks me-1"></i> Course Methodology
                             </label>
-                            <textarea name="methodology" rows="3" class="form-control @error('methodology') is-invalid @enderror">{{ old('methodology', $program->methodology) }}</textarea>
+                            <textarea name="methodology" rows="3"
+                                class="form-control @error('methodology') is-invalid @enderror">{{ old('methodology', $program->methodology) }}</textarea>
                             @error('methodology')
                                 <span class="error-feedback">{{ $message }}</span>
                             @enderror
@@ -216,7 +239,8 @@
                             <label class="form-label">
                                 <i class="fas fa-running me-1"></i> Activities
                             </label>
-                            <textarea name="activities" rows="3" class="form-control @error('activities') is-invalid @enderror">{{ old('activities', $program->activities) }}</textarea>
+                            <textarea name="activities" rows="3"
+                                class="form-control @error('activities') is-invalid @enderror">{{ old('activities', $program->activities) }}</textarea>
                             @error('activities')
                                 <span class="error-feedback">{{ $message }}</span>
                             @enderror
@@ -240,8 +264,25 @@
                             <label class="form-label">
                                 <i class="fas fa-book me-1"></i> Publications
                             </label>
-                            <textarea name="publications" rows="3" class="form-control @error('publications') is-invalid @enderror">{{ old('publications', $program->publications) }}</textarea>
+                            <textarea name="publications" rows="3"
+                                class="form-control @error('publications') is-invalid @enderror">{{ old('publications', $program->publications) }}</textarea>
                             @error('publications')
+                                <span class="error-feedback">{{ $message }}</span>
+                            @enderror
+                            @error('publications')
+                                <span class="error-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <!-- Enroll Link -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-link me-1"></i> Enroll Link
+                            </label>
+                            <input type="url" name="enroll_link" value="{{ old('enroll_link', $program->enroll_link) }}"
+                                class="form-control @error('enroll_link') is-invalid @enderror"
+                                placeholder="Enter enrollment URL">
+                            @error('enroll_link')
                                 <span class="error-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -253,14 +294,14 @@
                             </label>
                             @if ($program->brochure)
                                 <div class="mb-2">
-                                    <a href="{{ asset('storage/' . $program->brochure) }}" target="_blank" class="btn btn-sm btn-info">
+                                    <a href="{{ asset('storage/' . $program->brochure) }}" target="_blank"
+                                        class="btn btn-sm btn-info">
                                         <i class="fas fa-download me-1"></i>Current Brochure
                                     </a>
                                 </div>
                             @endif
-                            <input type="file" name="brochure" 
-                                   accept=".pdf"
-                                   class="form-control @error('brochure') is-invalid @enderror">
+                            <input type="file" name="brochure" accept=".pdf"
+                                class="form-control @error('brochure') is-invalid @enderror">
                             <small class="text-muted">Upload a new PDF brochure to replace (Optional, Max 5MB)</small>
                             @error('brochure')
                                 <span class="error-feedback">{{ $message }}</span>

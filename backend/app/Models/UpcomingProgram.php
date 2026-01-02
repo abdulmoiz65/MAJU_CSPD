@@ -15,6 +15,8 @@ class UpcomingProgram extends Model
         'methodology',
         'activities',
         'trainer_profile',
+        'trainer_image',
+        'enroll_link',
         'who_should_attend',
         'publications',
         'start_date',
