@@ -13,7 +13,17 @@ class UpcomingProgramController extends Controller
      */
     public function index()
     {
-        $programs = UpcomingProgram::latest()->paginate(15);
+        // Show only active programs (not manually completed AND not auto-completed by date)
+        // Since is_completed is an accessor, we filter based on 'completed' column false 
+        // AND 'end_date' >= today (or null).
+        $programs = UpcomingProgram::where('completed', false)
+            ->where(function ($query) {
+                $query->whereNull('end_date')
+                    ->orWhereDate('end_date', '>=', now());
+            })
+            ->latest()
+            ->paginate(15);
+
         return view('cspd_admin.pages.upcoming.index', compact('programs'));
     }
 
@@ -71,6 +81,12 @@ class UpcomingProgramController extends Controller
             $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('uploads/brochures', $filename, 'public');
             $validated['brochure'] = $path;
+        }
+
+
+
+        if (!$request->has('completed')) {
+            $validated['completed'] = false;
         }
 
         UpcomingProgram::create($validated);
@@ -158,6 +174,12 @@ class UpcomingProgramController extends Controller
             $validated['brochure'] = $path;
         }
 
+
+
+        if (!$request->has('completed')) {
+            $validated['completed'] = false;
+        }
+
         $program->update($validated);
 
         return redirect()
@@ -187,5 +209,40 @@ class UpcomingProgramController extends Controller
         return redirect()
             ->route('admin.upcoming.index')
             ->with('success', 'Program deleted successfully!');
+    }
+
+    /**
+     * Display a listing of completed programs
+     */
+    public function completedPrograms()
+    {
+        // Show programs that are manually completed OR auto-completed by date
+        $programs = UpcomingProgram::where('completed', true)
+            ->orWhere(function ($query) {
+                $query->whereNotNull('end_date')
+                    ->whereDate('end_date', '<', now());
+            })
+            ->latest()
+            ->paginate(15);
+
+        return view('cspd_admin.pages.upcoming.completed', compact('programs'));
+    }
+
+    /**
+     * Toggle the completed status of the specified upcoming program
+     */
+    public function toggleCompleted($id)
+    {
+        $program = UpcomingProgram::findOrFail($id);
+
+        // Toggle the completed status
+        // If it was true, set to false (Mark as Active)
+        // If it was false, set to true (Mark as Completed)
+        $program->completed = !$program->completed;
+        $program->save();
+
+        $message = $program->completed ? 'Program marked as completed!' : 'Program marked as active!';
+
+        return redirect()->back()->with('success', $message);
     }
 }

@@ -5,12 +5,9 @@
         <div class="table-container">
             <div class="table-header">
                 <div>
-                    <h2><i class="fas fa-calendar-alt me-2"></i>Upcoming Programs</h2>
-                    <p class="text-muted mb-0">Manage all upcoming training programs</p>
+                    <h2><i class="fas fa-check-circle me-2"></i>Completed Programs</h2>
+                    <p class="text-muted mb-0">View all completed training programs</p>
                 </div>
-                <a href="{{ route('admin.upcoming.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus-circle me-2"></i>Add New Program
-                </a>
             </div>
 
             @if (session('success'))
@@ -75,10 +72,10 @@
                                             class="d-inline">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-sm btn-success" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Mark as Completed"
-                                                onclick="return confirm('Are you sure you want to mark this program as completed?')">
-                                                <i class="fas fa-check"></i>
+                                            <button type="submit" class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Mark as Active"
+                                                onclick="return confirm('Are you sure you want to mark this program as active again?')">
+                                                <i class="fas fa-undo"></i>
                                             </button>
                                         </form>
 
@@ -110,12 +107,10 @@
                             <tr>
                                 <td colspan="6" class="text-center py-5">
                                     <div class="empty-state">
-                                        <i class="fas fa-calendar-plus fa-3x text-muted mb-3"></i>
-                                        <h5>No Upcoming Programs Found</h5>
-                                        <p class="text-muted">Get started by creating your first upcoming program.</p>
-                                        <a href="{{ route('admin.upcoming.create') }}" class="btn btn-primary">
-                                            <i class="fas fa-plus me-1"></i>Create Program
-                                        </a>
+                                        <i class="fas fa-check-double fa-3x text-muted mb-3"></i>
+                                        <h5>No Completed Programs Found</h5>
+                                        <p class="text-muted">Programs will appear here once they are marked as completed or
+                                            their end date has passed.</p>
                                     </div>
                                 </td>
                             </tr>

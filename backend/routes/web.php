@@ -30,6 +30,8 @@ Route::prefix('cspdadmin')->name('admin.')->group(function () {
         Route::delete('/navttc-programs/{id}', [NavttcProgramController::class, 'destroy'])->name('navttc.destroy');
 
         // Upcoming Programs
+        Route::put('/upcoming-programs/{id}/toggle-completed', [UpcomingProgramController::class, 'toggleCompleted'])->name('upcoming.toggle-completed');
+        Route::get('/upcoming-programs/completed', [UpcomingProgramController::class, 'completedPrograms'])->name('upcoming.completed');
         Route::get('/upcoming-programs', [UpcomingProgramController::class, 'index'])->name('upcoming.index');
         Route::get('/upcoming-programs/create', [UpcomingProgramController::class, 'create'])->name('upcoming.create');
         Route::post('/upcoming-programs', [UpcomingProgramController::class, 'store'])->name('upcoming.store');
@@ -42,14 +44,14 @@ Route::prefix('cspdadmin')->name('admin.')->group(function () {
         Route::get('/calendars', [CalendarController::class, 'index'])->name('calendars.index');
         Route::get('/calendars/create', [CalendarController::class, 'create'])->name('calendars.create');
         Route::post('/calendars', [CalendarController::class, 'store'])->name('calendars.store');
-Route::get('/calendars/{calendar}/edit', [CalendarController::class, 'edit'])
-    ->name('calendars.edit');
+        Route::get('/calendars/{calendar}/edit', [CalendarController::class, 'edit'])
+            ->name('calendars.edit');
 
-Route::put('/calendars/{calendar}', [CalendarController::class, 'update'])
-    ->name('calendars.update');
+        Route::put('/calendars/{calendar}', [CalendarController::class, 'update'])
+            ->name('calendars.update');
 
-Route::delete('/calendars/{calendar}', [CalendarController::class, 'destroy'])
-    ->name('calendars.destroy');
+        Route::delete('/calendars/{calendar}', [CalendarController::class, 'destroy'])
+            ->name('calendars.destroy');
     });
 
 });

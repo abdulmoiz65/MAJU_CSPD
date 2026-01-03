@@ -1,0 +1,23 @@
+[90m= [39m[34;4mApp\Models\UpcomingProgram[39;24m {#6377
+    [34mtitle[39m: "[32mActive Program[39m",
+    [34moverview[39m: "[32mOverview[39m",
+    [34mcourse_outline[39m: "[32mOutline[39m",
+    [34mlearning_outcomes[39m: "[32mOutcomes[39m",
+    [34mtrainer_profile[39m: "[32mTrainer[39m",
+    [34mstart_date[39m: "[32m2026-01-13 08:54:51[39m",
+    [34mduration[39m: "[32m1 Day[39m",
+    [34mtotal_hours[39m: "[32m8 Hours[39m",
+    [34mtiming[39m: "[32m9-5[39m",
+    [34mfees[39m: [35m5000[39m,
+    [34mstatus[39m: "[32mactive[39m",
+    [34mcompleted[39m: [36mfalse[39m,
+    [34mupdated_at[39m: "[32m2026-01-03 08:54:51[39m",
+    [34mcreated_at[39m: "[32m2026-01-03 08:54:51[39m",
+    [34mid[39m: [35m1[39m,
+    +[1mformatted_date[22m: "[32mJanuary 13, 2026[39m",
+    +[1mdisplay_date[22m: "[32mJanuary 13, 2026[39m",
+    +[1mformatted_fees[22m: "[32mPKR 5,000 /-[39m",
+    +[1mdate_duration[22m: "[32mJanuary 13, 2026 | 1 Day | 8 Hours[39m",
+    +[1mis_completed[22m: [36mfalse[39m,
+  }
+

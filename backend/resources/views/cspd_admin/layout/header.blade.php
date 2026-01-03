@@ -60,6 +60,8 @@
                                 Programs</a>
                             <a href="{{ route('admin.upcoming.index') }}" class="dropdown-item">View Upcoming
                                 Programs</a>
+                            <a href="{{ route('admin.upcoming.completed') }}" class="dropdown-item">View Completed
+                                Programs</a>
                         </div>
                     </div>
 
@@ -72,17 +74,17 @@
 
                         </div>
                     </div>
-                     <div class="nav-item dropdown">
+                    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>CALENDER</a>
-                              <div class="dropdown-menu bg-transparent border-0">
-                                  <a href="{{ route('admin.calendars.create') }}" class="dropdown-item">Add Calendar</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{ route('admin.calendars.create') }}" class="dropdown-item">Add Calendar</a>
                             <a href="{{ route('admin.calendars.index') }}" class="dropdown-item">View Calendar</a>
-                            
+
 
                         </div>
 
-                        
+
                     </div>
                     <!-- <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a> -->
                     <!-- <div class="nav-item dropdown">
@@ -100,7 +102,8 @@
                 <div class="navbar-nav w-100 mt-auto">
                     <form method="POST" action="{{ route('admin.logout') }}" style="display: inline;">
                         @csrf
-                        <button type="submit" class="nav-item nav-link" style="background: none; border: none; cursor: pointer;">
+                        <button type="submit" class="nav-item nav-link"
+                            style="background: none; border: none; cursor: pointer;">
                             <i class="fa fa-sign-out-alt me-2"></i>Log Out
                         </button>
                     </form>
@@ -132,9 +135,12 @@
                             <span class="d-none d-lg-inline-flex">Maju</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <form method="POST" action="{{ route('admin.logout') }}" style="display: inline; width: 100%;">
+                            <form method="POST" action="{{ route('admin.logout') }}"
+                                style="display: inline; width: 100%;">
                                 @csrf
-                                <button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer; width: 100%; text-align: left;">Log Out</button>
+                                <button type="submit" class="dropdown-item"
+                                    style="background: none; border: none; cursor: pointer; width: 100%; text-align: left;">Log
+                                    Out</button>
                             </form>
                         </div>
                     </div>

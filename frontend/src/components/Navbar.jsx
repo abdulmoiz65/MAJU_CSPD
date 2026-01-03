@@ -111,6 +111,11 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link className="dropdown-item" to="completed_programs">
+                      Past Programs
+                    </Link>
+                  </li>
+                  <li>
                     <Link className="dropdown-item" to="Navttc">
                       Navttc Programs
                     </Link>
@@ -216,6 +221,9 @@ const Navbar = () => {
               <div className="collapse ps-3" id="mobilePrograms">
                 <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/upcoming_programs")} style={{ cursor: "pointer" }}>
                   Upcoming Programs
+                </a>
+                <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/completed_programs")} style={{ cursor: "pointer" }}>
+                  Past Programs
                 </a>
                 <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/Navttc")} style={{ cursor: "pointer" }}>
                   Navttc Programs

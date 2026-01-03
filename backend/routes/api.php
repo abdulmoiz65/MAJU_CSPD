@@ -18,6 +18,7 @@ Route::prefix('navttc-programs')->group(function () {
 // Upcoming Programs API routes
 Route::prefix('upcoming-programs')->group(function () {
     Route::get('/by-month', [UpcomingProgramController::class, 'byMonth']);
+    Route::get('/completed', [UpcomingProgramController::class, 'completed']);
     Route::get('/', [UpcomingProgramController::class, 'index']);
     Route::get('/{id}', [UpcomingProgramController::class, 'show']);
     Route::post('/', [UpcomingProgramController::class, 'store']);

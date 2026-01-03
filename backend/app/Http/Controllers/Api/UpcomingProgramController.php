@@ -14,6 +14,11 @@ class UpcomingProgramController extends Controller
     public function index()
     {
         $programs = UpcomingProgram::where('status', 'active')
+            ->where('completed', false)
+            ->where(function ($query) {
+                $query->whereNull('end_date')
+                    ->orWhereDate('end_date', '>=', now());
+            })
             ->orderBy('start_date', 'asc')
             ->get();
 
@@ -42,11 +47,16 @@ class UpcomingProgramController extends Controller
     public function byMonth()
     {
         $programs = UpcomingProgram::where('status', 'active')
+            ->where('completed', false)
+            ->where(function ($query) {
+                $query->whereNull('end_date')
+                    ->orWhereDate('end_date', '>=', now());
+            })
             ->orderBy('start_date', 'asc')
             ->get();
 
         $grouped = [];
-        
+
         foreach ($programs as $program) {
             if ($program->start_date) {
                 $month = strtoupper($program->start_date->format('M')); // JAN, FEB, etc. (3-letter uppercase)
@@ -60,6 +70,25 @@ class UpcomingProgramController extends Controller
         return response()->json([
             'success' => true,
             'data' => $grouped,
+        ]);
+    }
+
+    /**
+     * Get all completed programs
+     */
+    public function completed()
+    {
+        $programs = UpcomingProgram::where('status', 'active')
+            ->where(function ($query) {
+                $query->where('completed', true)
+                    ->orWhereDate('end_date', '<', now());
+            })
+            ->orderBy('end_date', 'desc')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $programs,
         ]);
     }
 

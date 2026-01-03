@@ -28,22 +28,28 @@ class UpcomingProgram extends Model
         'currency',
         'discount_info',
         'brochure',
-        'status'
+        'status',
+        // 'completed' added to fillable
+        'completed'
     ];
 
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
-        'fees' => 'decimal:2'
+        'fees' => 'decimal:2',
+        'completed' => 'boolean'
     ];
 
     // Append accessors to JSON output
+    // appends moved to bottom to include is_completed
+    /*
     protected $appends = [
         'formatted_date',
         'display_date',
         'formatted_fees',
         'date_duration'
     ];
+    */
 
     // Accessor for formatted date
     public function getFormattedDateAttribute()
@@ -99,4 +105,26 @@ class UpcomingProgram extends Model
 
         return implode(' | ', $parts);
     }
+
+    // Accessor for completed status
+    public function getIsCompletedAttribute()
+    {
+        if ($this->completed) {
+            return true;
+        }
+
+        if ($this->end_date && $this->end_date->isPast()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected $appends = [
+        'formatted_date',
+        'display_date',
+        'formatted_fees',
+        'date_duration',
+        'is_completed'
+    ];
 }

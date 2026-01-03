@@ -10,6 +10,7 @@ import ProgramDetail from "./pages/ProgramDetail.jsx";
 import Navttc from "./pages/Navttc.jsx";
 import AboutMaju from "./pages/AboutMaju.jsx";
 import Director from "./pages/Director.jsx";
+import CompletedPrograms from "./pages/CompletedPrograms.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='Navttc' element={<Navttc />} />
         <Route path='about_maju' element={<AboutMaju />} />
         <Route path='director_message' element={<Director />} />
+        <Route path='completed_programs' element={<CompletedPrograms />} />
       </Route>
     </Routes>
   );
