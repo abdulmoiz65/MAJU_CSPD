@@ -117,8 +117,10 @@ function UpcomingPrograms() {
                     </button>
 
                     <a
-                      href={`/program-detail/${program.id}`}
-                      className="btn btn-apply"
+                      href={program.enroll_link || '#'}
+                      className={`btn btn-apply ${!program.enroll_link ? 'disabled' : ''}`}
+                      target={program.enroll_link ? "_blank" : "_self"}
+                      rel={program.enroll_link ? "noopener noreferrer" : ""}
                     >
                       Apply Now
                     </a>

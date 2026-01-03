@@ -91,6 +91,11 @@ const Navbar = () => {
                       President message
                     </Link>
                   </li>
+                  <li>
+                    <Link className="dropdown-item" to="director_message">
+                      Director CSPD
+                    </Link>
+                  </li>
 
                 </ul>
               </li>
@@ -192,6 +197,9 @@ const Navbar = () => {
                 </a>
                 <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/president_message")} style={{ cursor: "pointer" }}>
                   President Message
+                </a>
+                <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/director_message")} style={{ cursor: "pointer" }}>
+                  Director CSPD
                 </a>
               </div>
             </li>

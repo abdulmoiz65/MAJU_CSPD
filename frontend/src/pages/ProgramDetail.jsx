@@ -205,7 +205,23 @@ const ProgramDetail = () => {
               <h3>
                 <Award size={20} /> Trainer Profile
               </h3>
-              <div className="text-content">{program.trainer_profile}</div>
+              <div className="trainer-section d-flex align-items-start gap-4 flex-wrap">
+                {program.trainer_image && (
+                  <div className="trainer-image-wrapper">
+                    <img
+                      src={`${API_BASE_URL}/storage/${program.trainer_image}`}
+                      alt="Trainer"
+                      className="img-fluid rounded-circle shadow-sm"
+                      style={{ width: '150px', height: '150px', objectFit: 'cover' }}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+                <div className="text-content flex-grow-1">{program.trainer_profile}</div>
+              </div>
             </section>
           )}
 
@@ -253,7 +269,14 @@ const ProgramDetail = () => {
 
         {/* CTA Section */}
         <div className="detail-cta mt-5 pb-4">
-          <button className="btn btn-warning btn-lg me-2">Enroll Now</button>
+          <a
+            href={program.enroll_link || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`btn btn-warning btn-lg me-2 ${!program.enroll_link ? 'disabled' : ''}`}
+          >
+            Enroll Now
+          </a>
         </div>
       </div>
     </>

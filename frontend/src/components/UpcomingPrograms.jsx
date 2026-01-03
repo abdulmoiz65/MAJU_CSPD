@@ -7,8 +7,8 @@ const UpcomingPrograms = () => {
   const navigate = useNavigate();
 
   const months = [
-    "JAN","FEB","MAR","APR","MAY","JUN",
-    "JUL","AUG","SEP","OCT","NOV","DEC"
+    "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
   ];
 
   // 🔹 STATE
@@ -24,14 +24,14 @@ const UpcomingPrograms = () => {
       try {
         setLoading(true);
         const response = await fetch("http://localhost:8000/api/upcoming-programs/by-month");
-        
+
         if (!response.ok) {
           throw new Error("Failed to fetch programs");
         }
 
         const data = await response.json();
         console.log("API Response:", data); // Debug log
-        
+
         if (data.data && typeof data.data === 'object' && Object.keys(data.data).length > 0) {
           console.log("Programs loaded successfully:", Object.keys(data.data)); // Debug
           setAllPrograms(data.data);
@@ -102,7 +102,7 @@ const UpcomingPrograms = () => {
   // 🔹 FORMAT DATE FROM DATABASE
   const formatDate = (program) => {
     if (!program.start_date && !program.end_date) return "";
-    
+
     const startDate = new Date(program.start_date);
     const endDate = new Date(program.end_date);
 
@@ -112,6 +112,11 @@ const UpcomingPrograms = () => {
     const year = endDate.getFullYear();
 
     if (program.start_date && program.end_date) {
+      const startMonth = startDate.toLocaleDateString("en-US", { month: "long" });
+
+      if (month !== startMonth) {
+        return `${startDay} ${startMonth} to ${endDay} ${month}, ${year}`;
+      }
       return `${startDay} to ${endDay} ${month}, ${year}`;
     } else if (program.start_date) {
       return `${startDate.toLocaleDateString("en-US", {

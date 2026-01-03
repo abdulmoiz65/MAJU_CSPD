@@ -9,21 +9,23 @@ import Programs from "./pages/Programs.jsx";
 import ProgramDetail from "./pages/ProgramDetail.jsx";
 import Navttc from "./pages/Navttc.jsx";
 import AboutMaju from "./pages/AboutMaju.jsx";
+import Director from "./pages/Director.jsx";
 
-function App(){
+function App() {
   return (
     <Routes>
-        <Route path='/' element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path='about' element={<About />} />
-            <Route path='president_message' element={<Message />} /> 
-            <Route path='contact' element={<Contact />} />
-            <Route path='cancellation_policy' element={<CancelPolicy />} />
-            <Route path='upcoming_programs' element={<Programs />} />
-            <Route path='program-detail/:id' element={<ProgramDetail />} />
-            <Route path='Navttc' element={<Navttc />} />
-            <Route path='about_maju' element={<AboutMaju />} />
-        </Route>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path='about' element={<About />} />
+        <Route path='president_message' element={<Message />} />
+        <Route path='contact' element={<Contact />} />
+        <Route path='cancellation_policy' element={<CancelPolicy />} />
+        <Route path='upcoming_programs' element={<Programs />} />
+        <Route path='program-detail/:id' element={<ProgramDetail />} />
+        <Route path='Navttc' element={<Navttc />} />
+        <Route path='about_maju' element={<AboutMaju />} />
+        <Route path='director_message' element={<Director />} />
+      </Route>
     </Routes>
   );
 }

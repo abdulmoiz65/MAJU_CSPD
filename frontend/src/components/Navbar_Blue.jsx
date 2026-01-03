@@ -1,7 +1,7 @@
 import "./Navbar_Blue.css";
 const Navbar_Blue = () => {
   return (
-<>
+    <>
       <nav className="navbar navbar-expand-lg fixed-top simple-navbar">
         <div className="container-fluid px-lg-5">
           {/* Logo */}
@@ -84,7 +84,9 @@ const Navbar_Blue = () => {
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
+              <a className="nav-link" href="/about">About</a>
+              <a className="nav-link" href="/president_message">President Message</a>
+              <a className="nav-link" href="/director_message">Director CSPD</a>
             </li>
 
             <li className="nav-item">

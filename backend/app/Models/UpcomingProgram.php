@@ -49,7 +49,16 @@ class UpcomingProgram extends Model
     public function getFormattedDateAttribute()
     {
         if ($this->start_date && $this->end_date) {
-            return $this->start_date->format('F d') . ' - ' . $this->end_date->format('d, Y');
+            $start = $this->start_date;
+            $end = $this->end_date;
+
+            if ($start->year != $end->year) {
+                return $start->format('F d, Y') . ' - ' . $end->format('F d, Y');
+            } elseif ($start->month != $end->month) {
+                return $start->format('F d') . ' - ' . $end->format('F d, Y');
+            } else {
+                return $start->format('F d') . ' - ' . $end->format('d, Y');
+            }
         } elseif ($this->start_date) {
             return $this->start_date->format('F d, Y');
         }
