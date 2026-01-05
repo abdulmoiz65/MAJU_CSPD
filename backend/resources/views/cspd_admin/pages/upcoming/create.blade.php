@@ -52,7 +52,7 @@
 
                         <div class="form-group">
                             <label class="form-label">
-                                <i class="fas fa-calendar me-1"></i> End Date (Optional)
+                                <i class="fas fa-calendar me-1"></i> End Date (Most Expected)
                             </label>
                             <input type="date" name="end_date" value="{{ old('end_date') }}"
                                 class="form-control @error('end_date') is-invalid @enderror">
@@ -124,8 +124,7 @@
                             <label class="form-label">
                                 <i class="fas fa-tag me-1"></i> Discount Information
                             </label>
-                            <textarea name="discount_info" rows="3"
-                                class="form-control @error('discount_info') is-invalid @enderror"
+                            <textarea name="discount_info" rows="3" class="form-control @error('discount_info') is-invalid @enderror"
                                 placeholder="e.g., 10% early bird discount before November 30, 2025">{{ old('discount_info') }}</textarea>
                             @error('discount_info')
                                 <span class="error-feedback">{{ $message }}</span>
@@ -174,10 +173,8 @@
                             <label class="form-label">
                                 <i class="fas fa-list-ol me-1"></i> Course Outline *
                             </label>
-                            <textarea name="course_outline" rows="6"
-                                class="form-control @error('course_outline') is-invalid @enderror"
-                                placeholder="Enter course outline (one per line or in paragraphs)..."
-                                required>{{ old('course_outline') }}</textarea>
+                            <textarea name="course_outline" rows="6" class="form-control @error('course_outline') is-invalid @enderror"
+                                placeholder="Enter course outline (one per line or in paragraphs)..." required>{{ old('course_outline') }}</textarea>
                             <small class="text-muted">You can use bullet points or numbered lists</small>
                             @error('course_outline')
                                 <span class="error-feedback">{{ $message }}</span>
@@ -191,8 +188,7 @@
                             </label>
                             <textarea name="learning_outcomes" rows="4"
                                 class="form-control @error('learning_outcomes') is-invalid @enderror"
-                                placeholder="What will participants learn?..."
-                                required>{{ old('learning_outcomes') }}</textarea>
+                                placeholder="What will participants learn?..." required>{{ old('learning_outcomes') }}</textarea>
                             @error('learning_outcomes')
                                 <span class="error-feedback">{{ $message }}</span>
                             @enderror
@@ -203,10 +199,8 @@
                             <label class="form-label">
                                 <i class="fas fa-chalkboard-teacher me-1"></i> Trainer Profile *
                             </label>
-                            <textarea name="trainer_profile" rows="4"
-                                class="form-control @error('trainer_profile') is-invalid @enderror"
-                                placeholder="Enter trainer's profile and qualifications..."
-                                required>{{ old('trainer_profile') }}</textarea>
+                            <textarea name="trainer_profile" rows="4" class="form-control @error('trainer_profile') is-invalid @enderror"
+                                placeholder="Enter trainer's profile and qualifications..." required>{{ old('trainer_profile') }}</textarea>
                             @error('trainer_profile')
                                 <span class="error-feedback">{{ $message }}</span>
                             @enderror
@@ -230,8 +224,7 @@
                             <label class="form-label">
                                 <i class="fas fa-tasks me-1"></i> Course Methodology
                             </label>
-                            <textarea name="methodology" rows="3"
-                                class="form-control @error('methodology') is-invalid @enderror"
+                            <textarea name="methodology" rows="3" class="form-control @error('methodology') is-invalid @enderror"
                                 placeholder="How will the course be delivered?...">{{ old('methodology') }}</textarea>
                             @error('methodology')
                                 <span class="error-feedback">{{ $message }}</span>
@@ -243,8 +236,7 @@
                             <label class="form-label">
                                 <i class="fas fa-running me-1"></i> Activities
                             </label>
-                            <textarea name="activities" rows="3"
-                                class="form-control @error('activities') is-invalid @enderror"
+                            <textarea name="activities" rows="3" class="form-control @error('activities') is-invalid @enderror"
                                 placeholder="What activities will be included?...">{{ old('activities') }}</textarea>
                             @error('activities')
                                 <span class="error-feedback">{{ $message }}</span>
@@ -257,8 +249,7 @@
                                 <i class="fas fa-users me-1"></i> Who Should Attend
                             </label>
                             <textarea name="who_should_attend" rows="3"
-                                class="form-control @error('who_should_attend') is-invalid @enderror"
-                                placeholder="Who is this program for?...">{{ old('who_should_attend') }}</textarea>
+                                class="form-control @error('who_should_attend') is-invalid @enderror" placeholder="Who is this program for?...">{{ old('who_should_attend') }}</textarea>
                             @error('who_should_attend')
                                 <span class="error-feedback">{{ $message }}</span>
                             @enderror
@@ -269,8 +260,7 @@
                             <label class="form-label">
                                 <i class="fas fa-book me-1"></i> Publications
                             </label>
-                            <textarea name="publications" rows="3"
-                                class="form-control @error('publications') is-invalid @enderror"
+                            <textarea name="publications" rows="3" class="form-control @error('publications') is-invalid @enderror"
                                 placeholder="List any publications...">{{ old('publications') }}</textarea>
                             @error('publications')
                                 <span class="error-feedback">{{ $message }}</span>

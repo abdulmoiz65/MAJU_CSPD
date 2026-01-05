@@ -17,39 +17,27 @@ const PresidentMessage = () => {
           </h5>
 
           <p>
-            Welcome to the Center for Executive Education (CEE) at IBA, Karachi!
+            This University is right in the heart of one of the most vibrant cosmopolitan cities of the world is about both people and place.
           </p>
 
           <p>
-            Since 2003, the Center for Executive Education (CEE) at IBA, Karachi
-            has been working to transform managers into leaders in the public,
-            family business and the corporate sectors of Pakistan. We do this
-            through offering a range of educational programs covering
-            governance, leadership, strategy and other specialized subjects.
+            MAJU (as we are popularly known) strives to liberate students and faculty to explore, create, challenge, and become effective leaders. We empower our students by helping their visions and dreams grow through shared values, diversity, experience, respect, and faith. With special programs and community outreach programs available and encouraged, the curriculum and opportunities at M.A.J University are both exciting and aspiring.
           </p>
 
           <p>
-            Our programs prepare participants to reach new levels of success in
-            their careers while helping their organizations achieve increased
-            value, productivity, impact and employee satisfaction. Along with
-            expanding their knowledge and enhancing their skills in key
-            leadership areas, program participants learn the importance of
-            adaptability and how to manage ongoing uncertainty while remaining
-            focused on their organization&apos;s goals and values.
+            The M.A.J University in recent days has initiated a mega transformation phase to make this University a top-ranking University of the region. We’re enhancing the outlook of our faculty who are the top brains being drawn from all over the world to teach, perform, create, and study in a place where everyone belongs. The Industry faculty having minimum 10 years of experience are partnering with us by bringing in the diversity and practical exposure for our students. Technology and business incubators for our graduates and faculty are being created to develop a techno-preneurial eco system.
           </p>
 
           <p>
-            Participants also explore how to inspire and implement innovation
-            in their organization, and form successful strategic alliances with
-            external partners with bespoke and open programs as well as
-            post-graduate and diploma programs.
+            The Academic programs at M.A.J University are designed from Bachelors to PhD in disciplines of Management Sciences, Accounting, Economics & Finance, Computing Sciences, Electrical Engineering, Information Systems, Media Sciences and very soon other disciplines too. With an FM Radio station and partnerships with other leading Universities we are initiating blended programs in diverse areas at M.A.J University. With flexible course plans one can craft his/her own Degree plans and majors.
           </p>
 
           <p>
-            A committed faculty, drawn from academia and industry, provides
-            practical management knowledge and experience. The faculty consists
-            of outstanding experts in their fields who actively engage course
-            participants in an intense and rewarding learning process.
+            As the President of M.A.J University, I believe in giving you a dream and environment to accomplish your academic and professional goals: may you be a student, a faculty, a non-teaching staff member, an industry collaborator, an alumnus, a parent or just a passerby. Once you step-in, you are part of our MAJU fraternity.  We are also an important part of one of the largest educational conglomerate of Asia comprising of 3 Universities, a College Network of over 800 colleges and a network of over 3500 schools.
+          </p>
+
+          <p>
+            I hope you find Mohammad Ali Jinnah University as exhilarating and enriching as I do.
           </p>
         </div>
 
@@ -58,7 +46,7 @@ const PresidentMessage = () => {
           <div className="image-wrapper mx-auto">
             <img
               src={presidentImg}
-              alt="Executive Director IBA"
+              alt="President of Mohammad Ali Jinnah University"
               className="img-fluid president-img"
             />
           </div>

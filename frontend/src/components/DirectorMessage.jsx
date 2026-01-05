@@ -17,39 +17,15 @@ const DirectorMessage = () => {
                     </h5>
 
                     <p>
-                        Welcome to the Center for Executive Education (CEE) at Mohammad Ali Jinnah University!
+                        Welcome to the Centre for Skills & Professional Development (CSPD) at Mohammad Ali Jinnah University.
                     </p>
 
                     <p>
-                        Since 2003, the Center for Executive Education (CEE)
-                        has been working to transform managers into leaders in the public,
-                        family business and the corporate sectors of Pakistan. We do this
-                        through offering a range of educational programs covering
-                        governance, leadership, strategy and other specialized subjects.
+                        Our mission is to equip learners with industry-relevant skills, a forward-thinking mindset, and professional excellence. We offer inclusive and high-quality training programs designed to help you overcome professional challenges and contribute to a knowledge-driven society.
                     </p>
 
                     <p>
-                        Our programs prepare participants to reach new levels of success in
-                        their careers while helping their organizations achieve increased
-                        value, productivity, impact and employee satisfaction. Along with
-                        expanding their knowledge and enhancing their skills in key
-                        leadership areas, program participants learn the importance of
-                        adaptability and how to manage ongoing uncertainty while remaining
-                        focused on their organization&apos;s goals and values.
-                    </p>
-
-                    <p>
-                        Participants also explore how to inspire and implement innovation
-                        in their organization, and form successful strategic alliances with
-                        external partners with bespoke and open programs as well as
-                        post-graduate and diploma programs.
-                    </p>
-
-                    <p>
-                        A committed faculty, drawn from academia and industry, provides
-                        practical management knowledge and experience. The faculty consists
-                        of outstanding experts in their fields who actively engage course
-                        participants in an intense and rewarding learning process.
+                        Whether you are starting your career or looking to advance to the next level, CSPD provides the platform to foster your growth and success. We look forward to being part of your professional journey.
                     </p>
                 </div>
 
