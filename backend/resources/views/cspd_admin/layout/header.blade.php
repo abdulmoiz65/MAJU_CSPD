@@ -55,10 +55,10 @@
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>Users</a>
+                                class="fa fa-users me-2"></i>Users</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="#" class="dropdown-item">Add Users</a>
-                            <a href="#" class="dropdown-item">View Users</a>
+                            <a href="{{ route('admin.users.create') }}" class="dropdown-item">Add Users</a>
+                            <a href="{{ route('admin.users.index') }}" class="dropdown-item">View Users</a>
 
                         </div>
                     </div>

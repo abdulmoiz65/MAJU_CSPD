@@ -5,12 +5,12 @@ import { CalendarDays, MapPin, Download } from "lucide-react";
 import upcomingProgramService from "../services/api/upcomingProgramService";
 
 // Local images (NOT from DB)
-import prog1 from "../assets/ProgramCards/program_card.jpg";
-import prog2 from "../assets/ProgramCards/program_card2.jpg";
-import prog3 from "../assets/ProgramCards/program_card3.jpg";
-import prog4 from "../assets/ProgramCards/program_card4.jpg";
-import prog5 from "../assets/ProgramCards/program_card5.jpg";
-import prog6 from "../assets/ProgramCards/program_card6.jpg";
+import prog1 from "../assets/ProgramCards/pic1.jpg";
+import prog2 from "../assets/ProgramCards/pic2.jpg";
+import prog3 from "../assets/ProgramCards/pic3.jpg";
+import prog4 from "../assets/ProgramCards/pic4.jpg";
+import prog5 from "../assets/ProgramCards/pic5.jpg";
+import prog6 from "../assets/ProgramCards/pic6.jpg";
 
 // Static images array - assigned to programs in order
 const staticImages = [prog1, prog2, prog3, prog4, prog5, prog6];

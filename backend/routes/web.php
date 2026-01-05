@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NavttcProgramController;
 use App\Http\Controllers\Admin\UpcomingProgramController;
 use App\Http\Controllers\Admin\CalendarController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Middleware\AdminAuthenticate;
 
 Route::prefix('cspdadmin')->name('admin.')->group(function () {
@@ -52,6 +53,14 @@ Route::prefix('cspdadmin')->name('admin.')->group(function () {
 
         Route::delete('/calendars/{calendar}', [CalendarController::class, 'destroy'])
             ->name('calendars.destroy');
+
+        // Users
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
 });
