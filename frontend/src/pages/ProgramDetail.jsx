@@ -273,7 +273,7 @@ const ProgramDetail = () => {
             href={program.enroll_link || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className={`btn btn-warning btn-lg me-2 ${!program.enroll_link ? 'disabled' : ''}`}
+            className={`btn btn-primary btn-lg me-2 ${!program.enroll_link ? 'disabled' : ''}`}
           >
             Enroll Now
           </a>

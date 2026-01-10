@@ -64,3 +64,7 @@ Route::prefix('cspdadmin')->name('admin.')->group(function () {
     });
 
 });
+
+// Catch-all route for React Frontend
+Route::view('/{path?}', 'frontend')
+    ->where('path', '.*');
