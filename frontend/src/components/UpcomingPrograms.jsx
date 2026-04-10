@@ -23,7 +23,7 @@ const UpcomingPrograms = () => {
     const fetchPrograms = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:8000/api/upcoming-programs/by-month");
+        const response = await fetch("https://cspd.maju.edu.pk/api/upcoming-programs/by-month");
 
         if (!response.ok) {
           throw new Error("Failed to fetch programs");

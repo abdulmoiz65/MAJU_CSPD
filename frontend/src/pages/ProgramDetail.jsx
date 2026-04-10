@@ -22,14 +22,14 @@ const ProgramDetail = () => {
   const [error, setError] = useState(null);
 
   // API base URL for constructing full URLs to backend resources
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://cspd.maju.edu.pk';
 
   useEffect(() => {
     const fetchProgram = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:8000/api/upcoming-programs/${id}`
+          `https://cspd.maju.edu.pk/api/upcoming-programs/${id}`
         );
 
         if (!response.ok) {
@@ -273,7 +273,7 @@ const ProgramDetail = () => {
             href={program.enroll_link || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className={`btn btn-warning btn-lg me-2 ${!program.enroll_link ? 'disabled' : ''}`}
+            className={`btn btn-primary btn-lg me-2 ${!program.enroll_link ? 'disabled' : ''}`}
           >
             Enroll Now
           </a>
