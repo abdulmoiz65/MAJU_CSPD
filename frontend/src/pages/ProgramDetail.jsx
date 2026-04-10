@@ -102,7 +102,18 @@ const ProgramDetail = () => {
 
         {/* Header Section */}
         <div className="detail-header mb-5">
-          <h1 className="detail-title">{program.title}</h1>
+          <div className="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+            <h1 className="detail-title mb-0">{program.title}</h1>
+            <a
+              href={program.enroll_link || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`btn btn-primary btn-lg ${!program.enroll_link ? 'disabled' : ''}`}
+              style={{ borderRadius: 0 }}
+            >
+              Enroll Now
+            </a>
+          </div>
 
           <div className="detail-meta-info">
             {program.start_date && (
@@ -267,17 +278,7 @@ const ProgramDetail = () => {
           )}
         </div>
 
-        {/* CTA Section */}
-        <div className="detail-cta mt-5 pb-4">
-          <a
-            href={program.enroll_link || '#'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`btn btn-primary btn-lg me-2 ${!program.enroll_link ? 'disabled' : ''}`}
-          >
-            Enroll Now
-          </a>
-        </div>
+
       </div>
     </>
   );

@@ -11,6 +11,10 @@ import Navttc from "./pages/Navttc.jsx";
 import AboutMaju from "./pages/AboutMaju.jsx";
 import Director from "./pages/Director.jsx";
 import CompletedPrograms from "./pages/CompletedPrograms.jsx";
+import DiplomaPrograms from "./pages/DiplomaPrograms.jsx";
+import DiplomaProgramDetail from "./pages/DiplomaProgramDetail.jsx";
+import LanguageCourses from "./pages/LanguageCourses.jsx";
+import LanguageCourseDetail from "./pages/LanguageCourseDetail.jsx";
 
 function App() {
   return (
@@ -27,6 +31,10 @@ function App() {
         <Route path='about_maju' element={<AboutMaju />} />
         <Route path='director_message' element={<Director />} />
         <Route path='completed_programs' element={<CompletedPrograms />} />
+        <Route path='diploma_programs' element={<DiplomaPrograms />} />
+        <Route path='diploma-program-detail/:id' element={<DiplomaProgramDetail />} />
+        <Route path='language_courses' element={<LanguageCourses />} />
+        <Route path='language-course-detail/:id' element={<LanguageCourseDetail />} />
         <Route path='*' element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

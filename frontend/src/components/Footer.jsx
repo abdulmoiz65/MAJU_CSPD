@@ -109,7 +109,7 @@ const Footer = () => {
 
           {/* Footer Copy */}
           <div className="col-12 footerCopy">
-            <span>&copy; MAJU University 2026</span>
+            <span>&copy; MAJU University 2026 &nbsp;|&nbsp; Version 1.2</span>
             <div className="footerLogo">
               <img src="./maju.png" alt="MAJU Logo" />
             </div>

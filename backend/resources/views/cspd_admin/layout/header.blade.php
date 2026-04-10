@@ -97,6 +97,24 @@
 
 
                     </div>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-graduation-cap me-2"></i>DIPLOMA</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{ route('admin.diploma.create') }}" class="dropdown-item">Add Diploma Program</a>
+                            <a href="{{ route('admin.diploma.index') }}" class="dropdown-item">View Diploma Programs</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-language me-2"></i>LANGUAGE</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{ route('admin.language.create') }}" class="dropdown-item">Add Language Course</a>
+                            <a href="{{ route('admin.language.index') }}" class="dropdown-item">View Language Courses</a>
+                        </div>
+                    </div>
                     <!-- <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a> -->
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>

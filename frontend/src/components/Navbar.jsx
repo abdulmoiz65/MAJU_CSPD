@@ -116,6 +116,16 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link className="dropdown-item" to="diploma_programs">
+                      Diploma Programs
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="language_courses">
+                      Language Courses
+                    </Link>
+                  </li>
+                  <li>
                     <Link className="dropdown-item" to="Navttc">
                       Navttc Programs
                     </Link>
@@ -224,6 +234,12 @@ const Navbar = () => {
                 </a>
                 <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/completed_programs")} style={{ cursor: "pointer" }}>
                   Past Programs
+                </a>
+                <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/diploma_programs")} style={{ cursor: "pointer" }}>
+                  Diploma Programs
+                </a>
+                <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/language_courses")} style={{ cursor: "pointer" }}>
+                  Language Courses
                 </a>
                 <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/Navttc")} style={{ cursor: "pointer" }}>
                   Navttc Programs

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../components/NavttcProgram.css';
 import Heading from '../components/Heading';
 import { Search, Loader } from "lucide-react";
+import axiosInstance from '../services/api/axiosInstance';
 
 const CompletedPrograms = () => {
     const [programs, setPrograms] = useState([]);
@@ -13,11 +14,8 @@ const CompletedPrograms = () => {
     useEffect(() => {
         const fetchPrograms = async () => {
             try {
-                const response = await fetch("http://localhost:8000/api/upcoming-programs/completed");
-                if (!response.ok) {
-                    throw new Error("Failed to fetch programs");
-                }
-                const result = await response.json();
+                const response = await axiosInstance.get('/api/upcoming-programs/completed');
+                const result = response.data;
                 setPrograms(result.data || []);
                 setFilteredPrograms(result.data || []);
             } catch (err) {

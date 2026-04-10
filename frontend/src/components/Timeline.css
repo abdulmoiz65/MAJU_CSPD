@@ -1,0 +1,81 @@
+/* Timeline Component Styles */
+
+.timeline-card {
+  border: 2px solid #1a237e;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 100px;
+}
+
+.timeline-header {
+  background-color: #8B1A1A;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+.timeline-header h4 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.timeline-body {
+  background-color: #1a237e;
+}
+
+.timeline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-row:last-child {
+  border-bottom: none;
+}
+
+.timeline-row.even {
+  background-color: #1a237e;
+}
+
+.timeline-row.odd {
+  background-color: #283593;
+}
+
+.timeline-label {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.timeline-date {
+  color: #ffffff;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline-card {
+    position: static;
+    margin-top: 2rem;
+  }
+
+  .timeline-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .timeline-date {
+    text-align: left;
+  }
+}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\UpcomingProgram;
 use App\Models\NavttcProgram;
+use App\Models\DiplomaProgram;
+use App\Models\LanguageCourse;
 
 class DashboardController extends Controller
 {
@@ -15,6 +17,10 @@ class DashboardController extends Controller
             'active_upcoming_programs' => UpcomingProgram::where('status', 'active')->count(),
             'total_navttc_programs' => NavttcProgram::count(),
             'active_navttc_programs' => NavttcProgram::where('status', 'active')->count(),
+            'total_diploma_programs' => DiplomaProgram::count(),
+            'active_diploma_programs' => DiplomaProgram::where('status', 'active')->count(),
+            'total_language_courses' => LanguageCourse::count(),
+            'active_language_courses' => LanguageCourse::where('status', 'active')->count(),
             // Keep these for backward compatibility
             'total_programs' => UpcomingProgram::count() + NavttcProgram::count(),
             'upcoming_programs' => UpcomingProgram::count(),

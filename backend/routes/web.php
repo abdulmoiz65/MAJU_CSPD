@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\NavttcProgramController;
 use App\Http\Controllers\Admin\UpcomingProgramController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Admin\DiplomaProgramController;
+use App\Http\Controllers\Admin\LanguageCourseController;
 use App\Http\Middleware\AdminAuthenticate;
 
 Route::prefix('cspdadmin')->name('admin.')->group(function () {
@@ -61,6 +63,22 @@ Route::prefix('cspdadmin')->name('admin.')->group(function () {
         Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+        // Diploma Programs
+        Route::get('/diploma-programs', [DiplomaProgramController::class, 'index'])->name('diploma.index');
+        Route::get('/diploma-programs/create', [DiplomaProgramController::class, 'create'])->name('diploma.create');
+        Route::post('/diploma-programs', [DiplomaProgramController::class, 'store'])->name('diploma.store');
+        Route::get('/diploma-programs/{id}/edit', [DiplomaProgramController::class, 'edit'])->name('diploma.edit');
+        Route::put('/diploma-programs/{id}', [DiplomaProgramController::class, 'update'])->name('diploma.update');
+        Route::delete('/diploma-programs/{id}', [DiplomaProgramController::class, 'destroy'])->name('diploma.destroy');
+
+        // Language Courses
+        Route::get('/language-courses', [LanguageCourseController::class, 'index'])->name('language.index');
+        Route::get('/language-courses/create', [LanguageCourseController::class, 'create'])->name('language.create');
+        Route::post('/language-courses', [LanguageCourseController::class, 'store'])->name('language.store');
+        Route::get('/language-courses/{id}/edit', [LanguageCourseController::class, 'edit'])->name('language.edit');
+        Route::put('/language-courses/{id}', [LanguageCourseController::class, 'update'])->name('language.update');
+        Route::delete('/language-courses/{id}', [LanguageCourseController::class, 'destroy'])->name('language.destroy');
     });
 
 });

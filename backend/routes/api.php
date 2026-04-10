@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\NavttcProgramController;
 use App\Http\Controllers\Api\UpcomingProgramController;
 use App\Http\Controllers\Api\CalendarController;
+use App\Http\Controllers\Api\DiplomaProgramController;
+use App\Http\Controllers\Api\LanguageCourseController;
 
 // Calendar API route
 Route::get('/calendar/active', [CalendarController::class, 'getActiveCalendar']);
@@ -24,4 +26,16 @@ Route::prefix('upcoming-programs')->group(function () {
     Route::post('/', [UpcomingProgramController::class, 'store']);
     Route::put('/{id}', [UpcomingProgramController::class, 'update']);
     Route::delete('/{id}', [UpcomingProgramController::class, 'destroy']);
+});
+
+// Diploma Programs API routes
+Route::prefix('diploma-programs')->group(function () {
+    Route::get('/', [DiplomaProgramController::class, 'index']);
+    Route::get('/{id}', [DiplomaProgramController::class, 'show']);
+});
+
+// Language Courses API routes
+Route::prefix('language-courses')->group(function () {
+    Route::get('/', [LanguageCourseController::class, 'index']);
+    Route::get('/{id}', [LanguageCourseController::class, 'show']);
 });
