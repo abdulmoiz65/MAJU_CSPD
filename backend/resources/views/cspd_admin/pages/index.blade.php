@@ -149,6 +149,26 @@
                 </div>
             </div>
 
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white rounded">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-0">Summer Schools</h6>
+                                <h2 class="mt-2 mb-0">{{ $stats['total_summer_schools'] ?? 0 }}</h2>
+                                <small class="opacity-75">{{ $stats['active_summer_schools'] ?? 0 }} active</small>
+                            </div>
+                            <i class="fas fa-sun fa-3x opacity-50"></i>
+                        </div>
+                        <div class="mt-3">
+                            <a href="{{ route('admin.summer.index') }}" class="text-white text-decoration-none small">
+                                View All <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Quick Actions -->
             <div class="col-12">
                 <div class="bg-light rounded p-4">

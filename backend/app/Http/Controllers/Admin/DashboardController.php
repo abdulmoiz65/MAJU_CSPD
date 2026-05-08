@@ -7,6 +7,7 @@ use App\Models\UpcomingProgram;
 use App\Models\NavttcProgram;
 use App\Models\DiplomaProgram;
 use App\Models\LanguageCourse;
+use App\Models\SummerSchool;
 
 class DashboardController extends Controller
 {
@@ -20,8 +21,8 @@ class DashboardController extends Controller
             'total_diploma_programs' => DiplomaProgram::count(),
             'active_diploma_programs' => DiplomaProgram::where('status', 'active')->count(),
             'total_language_courses' => LanguageCourse::count(),
-            'active_language_courses' => LanguageCourse::where('status', 'active')->count(),
-            // Keep these for backward compatibility
+            'active_language_courses' => LanguageCourse::where('status', 'active')->count(),            'total_summer_schools'     => SummerSchool::count(),
+            'active_summer_schools'    => SummerSchool::where('status', 'active')->count(),            // Keep these for backward compatibility
             'total_programs' => UpcomingProgram::count() + NavttcProgram::count(),
             'upcoming_programs' => UpcomingProgram::count(),
             'active_programs' => UpcomingProgram::where('status', 'active')->count(),

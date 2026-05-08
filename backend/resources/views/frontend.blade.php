@@ -19,7 +19,7 @@
   <!-- Bootstrap Icons (required for bi bi-... to work) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-  <script type="module" crossorigin src="/assets/index-BaZ6bWvm.js"></script>
+  <script type="module" crossorigin src="/assets/index-CYtkoYGT.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-B6BZFKSC.css">
 </head>
 

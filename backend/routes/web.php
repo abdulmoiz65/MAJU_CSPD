@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Admin\DiplomaProgramController;
 use App\Http\Controllers\Admin\LanguageCourseController;
+use App\Http\Controllers\Admin\SummerSchoolController;
 use App\Http\Middleware\AdminAuthenticate;
 
 Route::prefix('cspdadmin')->name('admin.')->group(function () {
@@ -79,6 +80,14 @@ Route::prefix('cspdadmin')->name('admin.')->group(function () {
         Route::get('/language-courses/{id}/edit', [LanguageCourseController::class, 'edit'])->name('language.edit');
         Route::put('/language-courses/{id}', [LanguageCourseController::class, 'update'])->name('language.update');
         Route::delete('/language-courses/{id}', [LanguageCourseController::class, 'destroy'])->name('language.destroy');
+
+        // Summer Schools
+        Route::get('/summer-schools', [SummerSchoolController::class, 'index'])->name('summer.index');
+        Route::get('/summer-schools/create', [SummerSchoolController::class, 'create'])->name('summer.create');
+        Route::post('/summer-schools', [SummerSchoolController::class, 'store'])->name('summer.store');
+        Route::get('/summer-schools/{id}/edit', [SummerSchoolController::class, 'edit'])->name('summer.edit');
+        Route::put('/summer-schools/{id}', [SummerSchoolController::class, 'update'])->name('summer.update');
+        Route::delete('/summer-schools/{id}', [SummerSchoolController::class, 'destroy'])->name('summer.destroy');
     });
 
 });

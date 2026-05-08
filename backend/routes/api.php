@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\UpcomingProgramController;
 use App\Http\Controllers\Api\CalendarController;
 use App\Http\Controllers\Api\DiplomaProgramController;
 use App\Http\Controllers\Api\LanguageCourseController;
+use App\Http\Controllers\Api\SummerSchoolController;
 
 // Calendar API route
 Route::get('/calendar/active', [CalendarController::class, 'getActiveCalendar']);
@@ -38,4 +39,10 @@ Route::prefix('diploma-programs')->group(function () {
 Route::prefix('language-courses')->group(function () {
     Route::get('/', [LanguageCourseController::class, 'index']);
     Route::get('/{id}', [LanguageCourseController::class, 'show']);
+});
+
+// Summer Schools API routes
+Route::prefix('summer-schools')->group(function () {
+    Route::get('/', [SummerSchoolController::class, 'index']);
+    Route::get('/{id}', [SummerSchoolController::class, 'show']);
 });

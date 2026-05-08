@@ -126,6 +126,11 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link className="dropdown-item" to="summer_school">
+                      Summer School
+                    </Link>
+                  </li>
+                  <li>
                     <Link className="dropdown-item" to="Navttc">
                       Navttc Programs
                     </Link>
@@ -240,6 +245,9 @@ const Navbar = () => {
                 </a>
                 <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/language_courses")} style={{ cursor: "pointer" }}>
                   Language Courses
+                </a>
+                <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/summer_school")} style={{ cursor: "pointer" }}>
+                  Summer School
                 </a>
                 <a className="nav-link" onClick={() => closeOffcanvasAndNavigate("/Navttc")} style={{ cursor: "pointer" }}>
                   Navttc Programs
