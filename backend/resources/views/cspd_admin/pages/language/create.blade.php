@@ -138,20 +138,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Timeline Dates Section -->
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <h4 class="mb-3"><i class="fas fa-stream me-2"></i>Timeline Dates</h4>
-                        <p class="text-muted">Set the important dates for the course timeline</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Registration Date</label>
-                            <input type="date" name="registration_date" value="{{ old('registration_date') }}"
-                                class="form-control @error('registration_date') is-invalid @enderror">
-                            @error('registration_date') <span class="error-feedback">{{ $message }}</span> @enderror
-                        </div>
                         <div class="form-group">
                             <label class="form-label">Online Form Availability Date</label>
                             <input type="date" name="online_form_availability_date" value="{{ old('online_form_availability_date') }}"

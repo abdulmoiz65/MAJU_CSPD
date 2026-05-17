@@ -38,14 +38,32 @@ const SummerSchool = () => {
         ) : (
           <ul className="list-group list-group-flush">
             {schools.map((school) => (
-              <li key={school.id} className="list-group-item py-3 d-flex align-items-center gap-3">
-                <span style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: '#112269', flexShrink: 0 }}></span>
-                <Link
-                  to={`/summer-school-detail/${school.id}`}
-                  className="text-decoration-none fw-semibold fs-5"
-                >
-                  {school.title}
-                </Link>
+              <li key={school.id} className="list-group-item py-3">
+                <div className="d-flex align-items-start gap-3">
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: '#112269', flexShrink: 0, marginTop: 8 }}></span>
+                  <div className="flex-grow-1">
+                    <Link
+                      to={`/summer-school-detail/${school.id}`}
+                      className="text-decoration-none fw-semibold fs-5"
+                    >
+                      {school.title}
+                    </Link>
+                    <div className="d-flex flex-wrap gap-3 mt-1">
+                      {school.duration && (
+                        <span className="text-muted small">
+                          <i className="bi bi-clock me-1"></i>
+                          {school.duration}
+                        </span>
+                      )}
+                      {school.formatted_fees && (
+                        <span className="text-muted small">
+                          <i className="bi bi-tag me-1"></i>
+                          {school.formatted_fees}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>

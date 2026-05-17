@@ -135,67 +135,6 @@
                     @error('trainer_profile') <span class="error-feedback">{{ $message }}</span> @enderror
                 </div>
 
-                <!-- Timeline Dates Section -->
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <h4 class="mb-3"><i class="fas fa-stream me-2"></i>Timeline Dates</h4>
-                        <p class="text-muted">Set the important dates for the summer school timeline</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Registration Date</label>
-                            <input type="date" name="registration_date"
-                                value="{{ old('registration_date', $school->registration_date ? $school->registration_date->format('Y-m-d') : '') }}"
-                                class="form-control @error('registration_date') is-invalid @enderror">
-                            @error('registration_date') <span class="error-feedback">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Online Form Availability Date</label>
-                            <input type="date" name="online_form_availability_date"
-                                value="{{ old('online_form_availability_date', $school->online_form_availability_date ? $school->online_form_availability_date->format('Y-m-d') : '') }}"
-                                class="form-control @error('online_form_availability_date') is-invalid @enderror">
-                            @error('online_form_availability_date') <span class="error-feedback">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Form Submission Deadline</label>
-                            <input type="date" name="form_submission_deadline"
-                                value="{{ old('form_submission_deadline', $school->form_submission_deadline ? $school->form_submission_deadline->format('Y-m-d') : '') }}"
-                                class="form-control @error('form_submission_deadline') is-invalid @enderror">
-                            @error('form_submission_deadline') <span class="error-feedback">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Enrollment Offers Date</label>
-                            <input type="date" name="enrollment_offers_date"
-                                value="{{ old('enrollment_offers_date', $school->enrollment_offers_date ? $school->enrollment_offers_date->format('Y-m-d') : '') }}"
-                                class="form-control @error('enrollment_offers_date') is-invalid @enderror">
-                            @error('enrollment_offers_date') <span class="error-feedback">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Fee and Document Submission Date</label>
-                            <input type="date" name="fee_document_submission_date"
-                                value="{{ old('fee_document_submission_date', $school->fee_document_submission_date ? $school->fee_document_submission_date->format('Y-m-d') : '') }}"
-                                class="form-control @error('fee_document_submission_date') is-invalid @enderror">
-                            @error('fee_document_submission_date') <span class="error-feedback">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Orientation Ceremony Date</label>
-                            <input type="date" name="orientation_ceremony_date"
-                                value="{{ old('orientation_ceremony_date', $school->orientation_ceremony_date ? $school->orientation_ceremony_date->format('Y-m-d') : '') }}"
-                                class="form-control @error('orientation_ceremony_date') is-invalid @enderror">
-                            @error('orientation_ceremony_date') <span class="error-feedback">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Class Commencement Date</label>
-                            <input type="date" name="class_commencement_date"
-                                value="{{ old('class_commencement_date', $school->class_commencement_date ? $school->class_commencement_date->format('Y-m-d') : '') }}"
-                                class="form-control @error('class_commencement_date') is-invalid @enderror">
-                            @error('class_commencement_date') <span class="error-feedback">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Action Buttons -->
                 <div class="btn-form-group">
                     <button type="submit" class="btn btn-primary">

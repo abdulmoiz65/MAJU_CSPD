@@ -10,7 +10,6 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import Heading from "../components/Heading";
-import Timeline from "../components/Timeline";
 import summerSchoolService from "../services/api/summerSchoolService";
 import "./ProgramDetail.css";
 
@@ -84,7 +83,7 @@ const SummerSchoolDetail = () => {
       <div className="program-detail container my-5">
         <div className="row">
           {/* Left Column - Details */}
-          <div className="col-md-8">
+          <div className="col-12">
             <div className="detail-header mb-5">
               <div className="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
                 <h1 className="detail-title mb-0">{school.title}</h1>
@@ -202,11 +201,6 @@ const SummerSchoolDetail = () => {
                 </section>
               )}
             </div>
-          </div>
-
-          {/* Right Column - Timeline */}
-          <div className="col-md-4">
-            <Timeline timeline={school.timeline} />
           </div>
         </div>
       </div>

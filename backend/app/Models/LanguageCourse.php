@@ -48,7 +48,6 @@ class LanguageCourse extends Model
         'formatted_date',
         'display_date',
         'formatted_fees',
-        'timeline',
     ];
 
     public function getFormattedDateAttribute()
@@ -86,16 +85,5 @@ class LanguageCourse extends Model
         return 'Free';
     }
 
-    public function getTimelineAttribute()
-    {
-        return [
-            ['label' => 'Registration', 'date' => $this->registration_date?->format('d F Y')],
-            ['label' => 'Online Form Availability', 'date' => $this->online_form_availability_date?->format('d F Y')],
-            ['label' => 'Form submission deadline', 'date' => $this->form_submission_deadline?->format('d F Y')],
-            ['label' => 'Enrollment offers', 'date' => $this->enrollment_offers_date?->format('d F Y')],
-            ['label' => 'Fee and Document Submission', 'date' => $this->fee_document_submission_date?->format('d F Y')],
-            ['label' => 'Orientation Ceremony', 'date' => $this->orientation_ceremony_date?->format('d F Y')],
-            ['label' => 'Class Commencement', 'date' => $this->class_commencement_date?->format('d F Y')],
-        ];
-    }
 }
+

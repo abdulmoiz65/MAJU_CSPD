@@ -11,7 +11,7 @@ class SummerSchoolController extends Controller
     {
         $schools = SummerSchool::where('status', 'active')
             ->orderBy('created_at', 'desc')
-            ->get(['id', 'title']);
+            ->get(['id', 'title', 'duration', 'fees', 'currency']);
 
         return response()->json([
             'success' => true,

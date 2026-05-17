@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && find ../backend/storage ../backend/bootstrap/cache -user abdulmoiz -exec chmod o+w {} \\;",
     "lint": "eslint .",
     "preview": "vite preview"
   },

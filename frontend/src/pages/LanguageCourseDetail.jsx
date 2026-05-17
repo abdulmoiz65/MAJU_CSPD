@@ -10,7 +10,6 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import Heading from "../components/Heading";
-import Timeline from "../components/Timeline";
 import languageCourseService from "../services/api/languageCourseService";
 import "./ProgramDetail.css";
 
@@ -84,7 +83,7 @@ const LanguageCourseDetail = () => {
       <div className="program-detail container my-5">
         <div className="row">
           {/* Left Column - Course Details */}
-          <div className="col-md-8">
+          <div className="col-12">
             {/* Header Section */}
             <div className="detail-header mb-5">
               <div className="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
@@ -205,11 +204,6 @@ const LanguageCourseDetail = () => {
             </div>
 
 
-          </div>
-
-          {/* Right Column - Timeline */}
-          <div className="col-md-4">
-            <Timeline timeline={course.timeline} />
           </div>
         </div>
       </div>
